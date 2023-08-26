@@ -1,0 +1,15 @@
+﻿<Project>
+  
+  <PropertyGroup>
+    <Version>0.1.0</Version>
+    <PackageVersion>0.1.0</PackageVersion> 
+    <Authors>Passingwind</Authors>
+    <Copyright>Passingwind</Copyright>
+    <RepositoryUrl>https://github.com/jxnkwlp/abp-modules</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+    <Company>Passingwind</Company> 
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>abp</PackageTags>
+  </PropertyGroup>
+ 
+</Project>

@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Zero</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Zero.Domain\Zero.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AuditLogging.MongoDB" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.BackgroundJobs.MongoDB" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.MongoDB" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Identity.MongoDB" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.OpenIddict.MongoDB" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.MongoDB" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.SettingManagement.MongoDB" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.TenantManagement.MongoDB" Version="$(AbpVersion)" />
+  </ItemGroup>
+
+</Project>
