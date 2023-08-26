@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Builder;
@@ -12,7 +12,6 @@ using Volo.Abp.UI.Navigation;
 using Volo.Abp.Validation.Localization;
 using Zero.Localization;
 using Zero.Web;
-using Zero.Web.Menus;
 
 namespace Zero;
 
@@ -57,6 +56,6 @@ public class ZeroWebTestModule : AbpModule
 
     private static void ConfigureNavigationServices(IServiceCollection services)
     {
-        services.Configure<AbpNavigationOptions>(options => options.MenuContributors.Add(new ZeroMenuContributor()));
+        //services.Configure<AbpNavigationOptions>(options => options.MenuContributors.Add(new ZeroMenuContributor()));
     }
 }

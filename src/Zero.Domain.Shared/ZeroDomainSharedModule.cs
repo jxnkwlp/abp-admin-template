@@ -1,4 +1,7 @@
-﻿using Volo.Abp.AuditLogging;
+﻿using SharpAbp.Abp.AuditLogging;
+using SharpAbp.Abp.Identity;
+using SharpAbp.Abp.OpenIddict;
+using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
@@ -25,6 +28,9 @@ namespace Zero;
     typeof(AbpSettingManagementDomainSharedModule),
     typeof(AbpTenantManagementDomainSharedModule)
     )]
+[DependsOn(typeof(AuditLoggingDomainSharedModule))]
+[DependsOn(typeof(IdentityDomainSharedModule))]
+[DependsOn(typeof(OpenIddictDomainSharedModule))]
 public class ZeroDomainSharedModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)

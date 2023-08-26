@@ -21,6 +21,13 @@
   </ItemGroup>
   
   <ItemGroup>
+    <PackageReference Include="SharpAbp.Abp.AuditLogging.Domain.Shared" Version="2.8.1" />
+    <PackageReference Include="SharpAbp.Abp.Identity.Domain.Shared" Version="2.8.1" />
+    <PackageReference Include="SharpAbp.Abp.OpenIddict.Domain.Shared" Version="2.8.1" />
+  </ItemGroup>
+
+
+  <ItemGroup>
     <EmbeddedResource Include="Localization\Zero\*.json" />
     <Content Remove="Localization\Zero\*.json" />
   </ItemGroup>

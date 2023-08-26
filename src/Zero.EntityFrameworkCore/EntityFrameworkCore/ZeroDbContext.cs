@@ -1,4 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Passingwind.Abp.DictionaryManagement.EntityFrameworkCore;
+using Passingwind.Abp.DynamicPermissionManagement.EntityFrameworkCore;
+using Passingwind.Abp.FileManagement.EntityFrameworkCore;
+using Passingwind.Abp.IdentityClientManagement.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -76,6 +80,11 @@ public class ZeroDbContext :
         builder.ConfigureOpenIddict();
         builder.ConfigureFeatureManagement();
         builder.ConfigureTenantManagement();
+
+        builder.ConfigureDictionaryManagement();
+        builder.ConfigureDynamicPermissionManagement();
+        builder.ConfigureFileManagement();
+        builder.ConfigureIdentityClientManagement();
 
         /* Configure your own tables/entities inside here */
 

@@ -1,4 +1,7 @@
-﻿using Volo.Abp.Threading;
+﻿using Passingwind.Abp.DictionaryManagement;
+using Passingwind.Abp.FileManagement;
+using Passingwind.Abp.IdentityClientManagement;
+using Volo.Abp.Threading;
 
 namespace Zero.EntityFrameworkCore;
 
@@ -13,6 +16,10 @@ public static class ZeroEfCoreEntityExtensionMappings
 
         OneTimeRunner.Run(() =>
         {
+            FileManagementDbProperties.DbTablePrefix = ZeroConsts.DbTablePrefix;
+            IdentityClientManagementDbProperties.DbTablePrefix = ZeroConsts.DbTablePrefix;
+            DictionaryManagementDbProperties.DbTablePrefix = ZeroConsts.DbTablePrefix;
+
             /* You can configure extra properties for the
              * entities defined in the modules used by your application.
              *

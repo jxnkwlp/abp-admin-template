@@ -1,4 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Passingwind.Abp.DictionaryManagement.MongoDB;
+using Passingwind.Abp.DynamicPermissionManagement.MongoDB;
+using Passingwind.Abp.FileManagement.MongoDB;
+using Passingwind.Abp.IdentityClientManagement.MongoDB;
 using Volo.Abp.AuditLogging.MongoDB;
 using Volo.Abp.BackgroundJobs.MongoDB;
 using Volo.Abp.FeatureManagement.MongoDB;
@@ -23,6 +27,10 @@ namespace Zero.MongoDB;
     typeof(AbpTenantManagementMongoDbModule),
     typeof(AbpFeatureManagementMongoDbModule)
     )]
+[DependsOn(typeof(FileManagementMongoDbModule))]
+[DependsOn(typeof(IdentityClientManagementMongoDbModule))]
+[DependsOn(typeof(DynamicPermissionManagementMongoDbModule))]
+[DependsOn(typeof(DictionaryManagementMongoDbModule))]
 public class ZeroMongoDbModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)

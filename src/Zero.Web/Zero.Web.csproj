@@ -57,8 +57,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Account.Web.OpenIddict" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.BackgroundJobs.HangFire" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.BackgroundWorkers.Hangfire" Version="$(AbpVersion)" />
@@ -68,9 +68,13 @@
     <PackageReference Include="Volo.Abp.Hangfire" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Identity.Web" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.MailKit" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Web" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Swashbuckle" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.TenantManagement.Web" Version="$(AbpVersion)" />
-    <PackageReference Include="Volo.Abp.SettingManagement.Web" Version="$(AbpVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Passingwind.Abp.IdentityClientManagement.AspNetCore" Version="0.2.1" />
   </ItemGroup>
 
   <ItemGroup>

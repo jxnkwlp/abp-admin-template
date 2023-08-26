@@ -1,4 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Passingwind.Abp.DictionaryManagement.EntityFrameworkCore;
+using Passingwind.Abp.DynamicPermissionManagement.EntityFrameworkCore;
+using Passingwind.Abp.FileManagement.EntityFrameworkCore;
+using Passingwind.Abp.IdentityClientManagement.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -25,6 +29,10 @@ namespace Zero.EntityFrameworkCore;
     typeof(AbpTenantManagementEntityFrameworkCoreModule),
     typeof(AbpFeatureManagementEntityFrameworkCoreModule)
     )]
+[DependsOn(typeof(FileManagementEntityFrameworkCoreModule))]
+[DependsOn(typeof(IdentityClientManagementEntityFrameworkCoreModule))]
+[DependsOn(typeof(DynamicPermissionManagementEntityFrameworkCoreModule))]
+[DependsOn(typeof(DictionaryManagementEntityFrameworkCoreModule))]
 public class ZeroEntityFrameworkCoreModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)

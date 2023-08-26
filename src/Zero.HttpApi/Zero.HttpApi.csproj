@@ -13,12 +13,23 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Account.HttpApi" Version="$(AbpVersion)" />
+    <!--<PackageReference Include="Volo.Abp.Account.HttpApi" Version="$(AbpVersion)" />-->
     <PackageReference Include="Volo.Abp.FeatureManagement.HttpApi" Version="$(AbpVersion)" />
-    <PackageReference Include="Volo.Abp.Identity.HttpApi" Version="$(AbpVersion)" />
+    <!--<PackageReference Include="Volo.Abp.Identity.HttpApi" Version="$(AbpVersion)" />-->
     <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.SettingManagement.HttpApi" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.TenantManagement.HttpApi" Version="$(AbpVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SharpAbp.Abp.Account.HttpApi" Version="2.8.1" />
+    <PackageReference Include="SharpAbp.Abp.AuditLogging.HttpApi" Version="2.8.1" />
+    <PackageReference Include="SharpAbp.Abp.Identity.HttpApi" Version="2.8.1" />
+    <PackageReference Include="SharpAbp.Abp.OpenIddict.HttpApi" Version="2.8.1" />
+    <PackageReference Include="Passingwind.Abp.DictionaryManagement.HttpApi" Version="0.1.1" />
+    <PackageReference Include="Passingwind.Abp.DynamicPermissionManagement.HttpApi" Version="0.1.2" />
+    <PackageReference Include="Passingwind.Abp.FileManagement.HttpApi" Version="0.1.6" />
+    <PackageReference Include="Passingwind.Abp.IdentityClientManagement.HttpApi" Version="0.2.1" />
   </ItemGroup>
 
 </Project>

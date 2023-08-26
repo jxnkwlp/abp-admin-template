@@ -22,6 +22,9 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using OpenIddict.Validation.AspNetCore;
+using Passingwind.Abp.FileManagement.Files;
+using Passingwind.Abp.FileManagement.Options;
+using Passingwind.Abp.IdentityClientManagement;
 using StackExchange.Redis;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Volo.Abp;
@@ -70,6 +73,7 @@ namespace Zero.Web;
     typeof(AbpMailKitModule),
     typeof(AbpSwashbuckleModule)
     )]
+[DependsOn(typeof(IdentityClientManagementAspNetCoreModule))]
 public class ZeroWebModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
@@ -351,6 +355,14 @@ public class ZeroWebModule : AbpModule
                     fileSystem.BasePath = path;
                 });
             });
+        });
+
+        Configure<FileManagementOptions>(options =>
+        {
+            options.DefaultOverrideBehavior = FileOverrideBehavior.Rename;
+            options.DefaultContainerAccessMode = FileAccessMode.Authorized;
+            options.DefaultAllowedFileExtensions = configuration.GetValue("FileManagement:Default:FileExtensions", "")!.Split(',');
+            options.DefaultMaximumFileSize = configuration.GetValue<long>("FileManagement:Default:MaxByteSizeForFile", 10 * 1024 * 1024);
         });
     }
 

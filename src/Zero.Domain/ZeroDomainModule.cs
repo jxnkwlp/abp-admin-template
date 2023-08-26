@@ -1,5 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Passingwind.Abp.DictionaryManagement;
+using Passingwind.Abp.DynamicPermissionManagement;
+using Passingwind.Abp.FileManagement;
+using Passingwind.Abp.IdentityClientManagement;
+using SharpAbp.Abp.AuditLogging;
+using SharpAbp.Abp.Identity;
+using SharpAbp.Abp.OpenIddict;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.Emailing;
@@ -29,6 +36,13 @@ namespace Zero;
     typeof(AbpSettingManagementDomainModule),
     typeof(AbpTenantManagementDomainModule)
 )]
+[DependsOn(typeof(AuditLoggingDomainModule))]
+[DependsOn(typeof(DictionaryManagementDomainModule))]
+[DependsOn(typeof(DynamicPermissionManagementDomainModule))]
+[DependsOn(typeof(FileManagementDomainModule))]
+[DependsOn(typeof(IdentityClientManagementDomainModule))]
+[DependsOn(typeof(IdentityDomainModule))]
+[DependsOn(typeof(OpenIddictDomainModule))]
 public class ZeroDomainModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
