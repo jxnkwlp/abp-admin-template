@@ -263,3 +263,7 @@ src/Zero.Blazor.Server.Tiered/Logs/*
 
 # Use abp install-libs to restore.
 **/wwwroot/libs/*
+
+#
+**/appsettings.*.json
+src/Zero.Web/storage/*

@@ -26,7 +26,7 @@
   <ItemGroup>
     <PackageReference Include="Passingwind.Abp.DictionaryManagement.MongoDB" Version="0.1.1" />
     <PackageReference Include="Passingwind.Abp.DynamicPermissionManagement.MongoDB" Version="0.1.2" />
-    <PackageReference Include="Passingwind.Abp.FileManagement.MongoDB" Version="0.1.6" />
+    <PackageReference Include="Passingwind.Abp.FileManagement.MongoDB" Version="0.1.9" />
     <PackageReference Include="Passingwind.Abp.IdentityClientManagement.MongoDB" Version="0.2.1" />
   </ItemGroup>
 

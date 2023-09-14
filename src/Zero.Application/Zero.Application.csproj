@@ -23,13 +23,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SharpAbp.Abp.Account.Application" Version="2.8.1" />
-    <PackageReference Include="SharpAbp.Abp.AuditLogging.Application" Version="2.8.1" />
-    <PackageReference Include="SharpAbp.Abp.Identity.Application" Version="2.8.1" />
+    <PackageReference Include="SharpAbp.Abp.AuditLogging.Application" Version="2.8.1" /> 
     <PackageReference Include="SharpAbp.Abp.OpenIddict.Application" Version="2.8.1" />
+    <PackageReference Include="Passingwind.Abp.Account.Application" Version="0.1.1" />
+    <PackageReference Include="Passingwind.Abp.Identity.Application" Version="0.1.3" />
     <PackageReference Include="Passingwind.Abp.DictionaryManagement.Application" Version="0.1.1" />
     <PackageReference Include="Passingwind.Abp.DynamicPermissionManagement.Application" Version="0.1.2" />
-    <PackageReference Include="Passingwind.Abp.FileManagement.Application" Version="0.1.6" />
+    <PackageReference Include="Passingwind.Abp.FileManagement.Application" Version="0.1.9" />
     <PackageReference Include="Passingwind.Abp.IdentityClientManagement.Application" Version="0.2.1" />
   </ItemGroup>
 

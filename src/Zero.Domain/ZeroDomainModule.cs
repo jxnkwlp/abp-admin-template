@@ -1,11 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
+﻿using Passingwind.Abp.Account;
 using Passingwind.Abp.DictionaryManagement;
 using Passingwind.Abp.DynamicPermissionManagement;
 using Passingwind.Abp.FileManagement;
+using Passingwind.Abp.Identity;
 using Passingwind.Abp.IdentityClientManagement;
 using SharpAbp.Abp.AuditLogging;
-using SharpAbp.Abp.Identity;
 using SharpAbp.Abp.OpenIddict;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
@@ -42,15 +41,12 @@ namespace Zero;
 [DependsOn(typeof(FileManagementDomainModule))]
 [DependsOn(typeof(IdentityClientManagementDomainModule))]
 [DependsOn(typeof(IdentityDomainModule))]
+[DependsOn(typeof(AccountDomainModule))]
 [DependsOn(typeof(OpenIddictDomainModule))]
 public class ZeroDomainModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         Configure<AbpMultiTenancyOptions>(options => options.IsEnabled = MultiTenancyConsts.IsEnabled);
-
-#if DEBUG
-        context.Services.Replace(ServiceDescriptor.Singleton<IEmailSender, NullEmailSender>());
-#endif
     }
 }

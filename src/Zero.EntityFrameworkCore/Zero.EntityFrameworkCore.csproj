@@ -27,7 +27,7 @@
   <ItemGroup>
     <PackageReference Include="Passingwind.Abp.DictionaryManagement.EntityFrameworkCore" Version="0.1.1" />
     <PackageReference Include="Passingwind.Abp.DynamicPermissionManagement.EntityFrameworkCore" Version="0.1.2" />
-    <PackageReference Include="Passingwind.Abp.FileManagement.EntityFrameworkCore" Version="0.1.6" />
+    <PackageReference Include="Passingwind.Abp.FileManagement.EntityFrameworkCore" Version="0.1.9" />
     <PackageReference Include="Passingwind.Abp.IdentityClientManagement.EntityFrameworkCore" Version="0.2.1" />
   </ItemGroup>
   

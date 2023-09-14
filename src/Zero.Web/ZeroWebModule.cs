@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
@@ -24,11 +25,11 @@ using Newtonsoft.Json.Serialization;
 using OpenIddict.Validation.AspNetCore;
 using Passingwind.Abp.FileManagement.Files;
 using Passingwind.Abp.FileManagement.Options;
+using Passingwind.Abp.Identity.AspNetCore;
 using Passingwind.Abp.IdentityClientManagement;
 using StackExchange.Redis;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Volo.Abp;
-using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.Autofac;
@@ -40,13 +41,14 @@ using Volo.Abp.BlobStoring.FileSystem;
 using Volo.Abp.Caching;
 using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.DistributedLocking;
+using Volo.Abp.Emailing;
 using Volo.Abp.Hangfire;
-using Volo.Abp.Identity.Web;
 using Volo.Abp.Json;
 using Volo.Abp.Json.SystemTextJson;
 using Volo.Abp.Localization;
 using Volo.Abp.MailKit;
 using Volo.Abp.Modularity;
+using Volo.Abp.OpenIddict;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.Timing;
 using Volo.Abp.UI.Navigation.Urls;
@@ -61,7 +63,7 @@ namespace Zero.Web;
     typeof(ZeroHttpApiModule),
     typeof(ZeroApplicationModule),
     typeof(ZeroEntityFrameworkCoreModule),
-    typeof(AbpAccountWebOpenIddictModule),
+    typeof(AbpOpenIddictAspNetCoreModule),
     typeof(AbpAspNetCoreMvcUiBasicThemeModule),
     typeof(AbpAutofacModule),
     typeof(AbpBackgroundJobsHangfireModule),
@@ -69,7 +71,7 @@ namespace Zero.Web;
     typeof(AbpBlobStoringFileSystemModule),
     typeof(AbpCachingStackExchangeRedisModule),
     typeof(AbpDistributedLockingModule),
-    typeof(AbpIdentityWebModule),
+    typeof(IdentityAspNetCoreModule),
     typeof(AbpMailKitModule),
     typeof(AbpSwashbuckleModule)
     )]
@@ -124,6 +126,13 @@ public class ZeroWebModule : AbpModule
         ConfigureVirtualFileSystem(hostingEnvironment);
         ConfigureAutoApiControllers();
         ConfigureSwaggerServices(context.Services);
+    }
+
+    public override void PostConfigureServices(ServiceConfigurationContext context)
+    {
+#if DEBUG
+        context.Services.Replace(ServiceDescriptor.Singleton<IEmailSender, NullEmailSender>());
+#endif
     }
 
     #region Configure Services
@@ -420,7 +429,7 @@ public class ZeroWebModule : AbpModule
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Zero App API", Version = "v1" });
                 options.DocInclusionPredicate((_, __) => true);
-                options.GenerateSchemaIdAndOperationId();
+                options.ApplyExtensions();
             }
         );
     }
