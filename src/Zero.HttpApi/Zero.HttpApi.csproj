@@ -20,14 +20,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SharpAbp.Abp.AuditLogging.HttpApi" Version="2.8.1" /> 
-    <PackageReference Include="SharpAbp.Abp.OpenIddict.HttpApi" Version="2.8.1" />
-    <PackageReference Include="Passingwind.Abp.Account.HttpApi" Version="0.1.1" />
-    <PackageReference Include="Passingwind.Abp.Identity.HttpApi" Version="0.1.3" /> 
-    <PackageReference Include="Passingwind.Abp.DictionaryManagement.HttpApi" Version="0.1.1" />
-    <PackageReference Include="Passingwind.Abp.DynamicPermissionManagement.HttpApi" Version="0.1.2" />
-    <PackageReference Include="Passingwind.Abp.FileManagement.HttpApi" Version="0.1.9" />
-    <PackageReference Include="Passingwind.Abp.IdentityClientManagement.HttpApi" Version="0.2.1" />
+    <PackageReference Include="SharpAbp.Abp.AuditLogging.HttpApi" Version="$(SharpAbpVersion)" />
+    <PackageReference Include="SharpAbp.Abp.OpenIddict.HttpApi" Version="$(SharpAbpVersion)" />
+    <PackageReference Include="Passingwind.Abp.Account.HttpApi" Version="$(AccountVersion)" />
+    <PackageReference Include="Passingwind.Abp.Identity.HttpApi" Version="$(IdentityVersion)" />
+    <PackageReference Include="Passingwind.Abp.DictionaryManagement.HttpApi" Version="$(DictionaryVersion)" />
+    <PackageReference Include="Passingwind.Abp.DynamicPermissionManagement.HttpApi" Version="$(PermissionVersion)" />
+    <PackageReference Include="Passingwind.Abp.FileManagement.HttpApi" Version="$(FileManagementVersion)" />
+    <PackageReference Include="Passingwind.Abp.IdentityClientManagement.HttpApi" Version="$(IdentityClientManagementVersion)" />
   </ItemGroup>
 
 </Project>

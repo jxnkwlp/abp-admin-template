@@ -4,39 +4,44 @@
     <Version>0.1.0</Version>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <AbpProjectType>app</AbpProjectType>
-    <AbpVersion>7.2.3</AbpVersion>
-    <CoreVersion>7.0.8</CoreVersion>
+    <CoreVersion>7.0.11</CoreVersion>
+    <MicrosoftCoreVersion>7.0.11</MicrosoftCoreVersion>
+    <AbpVersion>7.3.3</AbpVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <SharpAbpVersion>2.9.0</SharpAbpVersion>
+    <AccountVersion>0.2.2</AccountVersion>
+    <IdentityVersion>0.2.2</IdentityVersion>
+    <DictionaryVersion>0.2.0</DictionaryVersion>
+    <PermissionVersion>0.2.0</PermissionVersion>
+    <FileManagementVersion>0.2.1</FileManagementVersion>
+    <IdentityClientManagementVersion>0.3.0</IdentityClientManagementVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Roslynator.Analyzers" Version="4.4.0">
+    <PackageReference Include="Roslynator.Analyzers" Version="4.5.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="4.4.0">
+    <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="4.5.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.4.0">
+    <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.5.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="ConfigureAwait.Fody" Version="3.3.1" PrivateAssets="All" />
-    <PackageReference Include="Fody" Version="6.5.3">
+    <PackageReference Include="ConfigureAwait.Fody" Version="3.3.2" PrivateAssets="All" />
+    <PackageReference Include="Fody" Version="6.8.0">
       <PrivateAssets>All</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SourceLink.Create.CommandLine" Version="2.8.3"
-      PrivateAssets="All" />
   </ItemGroup>
-
+ 
   <Target Name="NoWarnOnRazorViewImportedTypeConflicts" BeforeTargets="RazorCoreCompile">
     <PropertyGroup>
       <NoWarn>$(NoWarn);0436</NoWarn>

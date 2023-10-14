@@ -25,14 +25,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Passingwind.Abp.DictionaryManagement.EntityFrameworkCore" Version="0.1.1" />
-    <PackageReference Include="Passingwind.Abp.DynamicPermissionManagement.EntityFrameworkCore" Version="0.1.2" />
-    <PackageReference Include="Passingwind.Abp.FileManagement.EntityFrameworkCore" Version="0.1.9" />
-    <PackageReference Include="Passingwind.Abp.IdentityClientManagement.EntityFrameworkCore" Version="0.2.1" />
+    <PackageReference Include="Passingwind.Abp.DictionaryManagement.EntityFrameworkCore" Version="$(DictionaryVersion)" />
+    <PackageReference Include="Passingwind.Abp.DynamicPermissionManagement.EntityFrameworkCore" Version="$(PermissionVersion)"/>
+    <PackageReference Include="Passingwind.Abp.FileManagement.EntityFrameworkCore" Version="$(FileManagementVersion)"/>
+    <PackageReference Include="Passingwind.Abp.IdentityClientManagement.EntityFrameworkCore" Version="$(IdentityClientManagementVersion)"/>
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.1">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(MicrosoftCoreVersion)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="$(MicrosoftCoreVersion)">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>

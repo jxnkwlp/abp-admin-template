@@ -26,14 +26,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SharpAbp.Abp.AuditLogging.Domain" Version="2.8.1" />
-    <PackageReference Include="SharpAbp.Abp.OpenIddict.Domain" Version="2.8.1" />
-    <PackageReference Include="Passingwind.Abp.Account.Domain" Version="0.1.1" />
-    <PackageReference Include="Passingwind.Abp.Identity.Domain" Version="0.1.3" />
-    <PackageReference Include="Passingwind.Abp.DictionaryManagement.Domain" Version="0.1.1" />
-    <PackageReference Include="Passingwind.Abp.DynamicPermissionManagement.Domain" Version="0.1.2" />
-    <PackageReference Include="Passingwind.Abp.FileManagement.Domain" Version="0.1.9" />
-    <PackageReference Include="Passingwind.Abp.IdentityClientManagement.Domain" Version="0.2.1" />
+    <PackageReference Include="SharpAbp.Abp.AuditLogging.Domain" Version="$(SharpAbpVersion)" />
+    <PackageReference Include="SharpAbp.Abp.OpenIddict.Domain" Version="$(SharpAbpVersion)" />
+    <PackageReference Include="Passingwind.Abp.Account.Domain" Version="$(AccountVersion)" />
+    <PackageReference Include="Passingwind.Abp.Identity.Domain" Version="$(IdentityVersion)" />
+    <PackageReference Include="Passingwind.Abp.DictionaryManagement.Domain" Version="$(DictionaryVersion)" />
+    <PackageReference Include="Passingwind.Abp.DynamicPermissionManagement.Domain" Version="$(PermissionVersion)" />
+    <PackageReference Include="Passingwind.Abp.FileManagement.Domain" Version="$(FileManagementVersion)" />
+    <PackageReference Include="Passingwind.Abp.IdentityClientManagement.Domain" Version="$(IdentityClientManagementVersion)" />
   </ItemGroup>
   
 </Project>

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Hangfire;
 using Hangfire.MemoryStorage;
 using Hangfire.Redis;
+using Hangfire.Redis.StackExchange;
 using Medallion.Threading;
 using Medallion.Threading.FileSystem;
 using Medallion.Threading.Redis;

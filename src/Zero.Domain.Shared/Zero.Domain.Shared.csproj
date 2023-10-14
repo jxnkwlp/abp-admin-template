@@ -21,9 +21,9 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="SharpAbp.Abp.AuditLogging.Domain.Shared" Version="2.8.1" />
-    <PackageReference Include="SharpAbp.Abp.Identity.Domain.Shared" Version="2.8.1" />
-    <PackageReference Include="SharpAbp.Abp.OpenIddict.Domain.Shared" Version="2.8.1" />
+    <PackageReference Include="SharpAbp.Abp.AuditLogging.Domain.Shared" Version="$(SharpAbpVersion)" />
+    <PackageReference Include="SharpAbp.Abp.Identity.Domain.Shared" Version="$(SharpAbpVersion)" />
+    <PackageReference Include="SharpAbp.Abp.OpenIddict.Domain.Shared" Version="$(SharpAbpVersion)" />
   </ItemGroup>
 
 
@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="7.0.8" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(MicrosoftCoreVersion)" />
   </ItemGroup>
 
 </Project>

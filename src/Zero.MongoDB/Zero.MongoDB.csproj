@@ -24,10 +24,10 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Passingwind.Abp.DictionaryManagement.MongoDB" Version="0.1.1" />
-    <PackageReference Include="Passingwind.Abp.DynamicPermissionManagement.MongoDB" Version="0.1.2" />
-    <PackageReference Include="Passingwind.Abp.FileManagement.MongoDB" Version="0.1.9" />
-    <PackageReference Include="Passingwind.Abp.IdentityClientManagement.MongoDB" Version="0.2.1" />
+    <PackageReference Include="Passingwind.Abp.DictionaryManagement.MongoDB" Version="$(DictionaryVersion)" />
+    <PackageReference Include="Passingwind.Abp.DynamicPermissionManagement.MongoDB" Version="$(PermissionVersion)" />
+    <PackageReference Include="Passingwind.Abp.FileManagement.MongoDB" Version="$(FileManagementVersion)" />
+    <PackageReference Include="Passingwind.Abp.IdentityClientManagement.MongoDB" Version="$(IdentityClientManagementVersion)" />
   </ItemGroup>
 
 </Project>
