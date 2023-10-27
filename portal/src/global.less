@@ -1,0 +1,81 @@
+html,
+body,
+#root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+        'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        'Noto Color Emoji';
+}
+
+.colorWeak {
+    filter: invert(80%);
+}
+
+.ant-layout {
+    min-height: 100vh;
+}
+
+.ant-pro-sider.ant-layout-sider.ant-pro-sider-fixed {
+    left: unset;
+}
+
+canvas {
+    display: block;
+}
+
+body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+@media (max-width: 768px) {
+    .ant-table {
+        width: 100%;
+        overflow-x: auto;
+
+        &-thead>tr,
+        &-tbody>tr {
+
+            >th,
+            >td {
+                white-space: pre;
+
+                >span {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+.ant-dropdown-trigger {
+    line-height: 28px;
+
+    .ant-avatar {
+        border: none;
+    }
+
+    .anticon {
+        height: 28px;
+        line-height: 28px;
+        vertical-align: inherit;
+    }
+}
+
+.ant-modal .ant-modal-header {
+    margin-bottom: 12px;
+}
+
+
+.ant-tree .ant-tree-node-content-wrapper {
+    min-height: 28px;
+    line-height: 28px;
+}

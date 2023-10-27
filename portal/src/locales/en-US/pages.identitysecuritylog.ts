@@ -1,0 +1,15 @@
+﻿export default {
+    'page.identitySecurityLog': 'Identity Security Log',
+    'page.identitySecurityLog.field.tenantId': 'Tenant Id',
+    'page.identitySecurityLog.field.applicationName': 'Application Name',
+    'page.identitySecurityLog.field.identity': 'Identity',
+    'page.identitySecurityLog.field.action': 'Action',
+    'page.identitySecurityLog.field.userId': 'User Id',
+    'page.identitySecurityLog.field.userName': 'User Name',
+    'page.identitySecurityLog.field.tenantName': 'Tenant Name',
+    'page.identitySecurityLog.field.clientId': 'Client Id',
+    'page.identitySecurityLog.field.correlationId': 'Correlation Id',
+    'page.identitySecurityLog.field.clientIpAddress': 'Client Ip Address',
+    'page.identitySecurityLog.field.browserInfo': 'Browser Info',
+    'page.identitySecurityLog.field.creationTime': 'Creation Time',
+};
