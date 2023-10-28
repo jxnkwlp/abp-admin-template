@@ -1,11 +1,12 @@
 import { trueOrfalseEnum } from '@/pages/common';
-import { updateIdentitySettingsLockout } from '@/services/IdentitySettings';
 import {
     createIdentityUser,
     deleteIdentityUser,
     getIdentityUser,
+    getIdentityUserAssignableClaims,
     getIdentityUserAssignableOrganizationUnits,
     getIdentityUserAssignableRoles,
+    getIdentityUserClaims,
     getIdentityUserList,
     getIdentityUserOrganizationUnits,
     getIdentityUserRoles,
@@ -15,6 +16,7 @@ import {
     identityUserResetAuthenticator,
     identityUserUnLock,
     updateIdentityUser,
+    updateIdentityUserClaim,
     updateIdentityUserEmailConfirmed,
     updateIdentityUserPassword,
     updateIdentityUserPhoneNumberConfirmed,
@@ -26,6 +28,7 @@ import { loopListToTree } from '@/utils';
 import { CheckCircleTwoTone, CloseCircleTwoTone } from '@ant-design/icons';
 import type { ActionType, ProColumnType } from '@ant-design/pro-components';
 import {
+    EditableProTable,
     ModalForm,
     PageContainer,
     ProFormCheckbox,
@@ -93,6 +96,15 @@ const Index: React.FC = () => {
     const [permissionKey, setPermissioKey] = useState<string>();
     const [permissionEditVisible, setPermissioVisible] = useState<boolean>();
 
+    const [claimsEditVisible, setClaimsEditVisible] = useState(false);
+    const [allClaimTypes, setAllClaimTypes] = useState<API.IdentityClaimType[]>([]);
+    const [claimsEditValues, setClaimsEditValues] = useState<API.IdentityClaim & { id: string }[]>([]);
+
+    const loadAllClaimTypes = async () => {
+        const result = await getIdentityUserAssignableClaims();
+        setAllClaimTypes(result?.items ?? []);
+    };
+
     const tableMoreActions = (id: string, record: API.IdentityUserV2) => {
         return (
             <TableDropdown
@@ -154,6 +166,9 @@ const Index: React.FC = () => {
                     } else if (key == 'permissions') {
                         setPermissioKey(record.id);
                         setPermissioVisible(true);
+                    } else if (key == 'claims') {
+                        await loadAllClaimTypes();
+                        setClaimsEditVisible(true);
                     }
                 }}
                 menus={[
@@ -174,6 +189,12 @@ const Index: React.FC = () => {
                     // @ts-ignore
                     { type: 'divider' },
                     {
+                        key: 'claims',
+                        name: intl.formatMessage({ id: 'page.identityUser.claims' }),
+                    },
+                    // @ts-ignore
+                    { type: 'divider' },
+                    {
                         key: 'lock',
                         name: intl.formatMessage({ id: 'page.identityUser.lock' }),
                         hidden: record.isLockout,
@@ -187,10 +208,7 @@ const Index: React.FC = () => {
                         key: 'two-factor',
                         name: intl.formatMessage({ id: 'page.identityUser.resetTwofactor' }),
                     },
-                    {
-                        key: 'claims',
-                        name: intl.formatMessage({ id: 'page.identityUser.claims' }),
-                    },
+
                     {
                         key: 'reset-authenticator',
                         name: intl.formatMessage({ id: 'page.identityUser.resetAuthenticator' }),
@@ -651,7 +669,7 @@ const Index: React.FC = () => {
                 open={twoFactorVisible}
                 onOpenChange={setTwoFactorVisible}
                 width={380}
-                title={`${intl.formatMessage({ id: 'page.identityUser.resetPassword' })} - ${editModalData?.userName}`}
+                title={`${intl.formatMessage({ id: 'page.identityUser.resetTwofactor' })} - ${editModalData?.userName}`}
                 modalProps={{ destroyOnClose: true, maskClosable: false }}
                 request={async () => {
                     return (await getIdentityUserTwoFactorEnabled(editModalDataId!)) ?? {};
@@ -744,6 +762,90 @@ const Index: React.FC = () => {
                 open={permissionEditVisible}
                 onOpenChange={setPermissioVisible}
             />
+
+            {/* claims */}
+            <Modal
+                title={intl.formatMessage({ id: 'page.identityUser.claims' })}
+                width={580}
+                open={claimsEditVisible}
+                destroyOnClose
+                onCancel={() => setClaimsEditVisible(false)}
+                onOk={async () => {
+                    const result = await updateIdentityUserClaim(editModalDataId!, { items: claimsEditValues });
+                    if (result?.ok) {
+                        message.success(intl.formatMessage({ id: 'common.dict.success' }));
+                        setClaimsEditVisible(false);
+                    }
+                }}
+            >
+                <EditableProTable<API.IdentityClaim & { id: string }>
+                    request={async () => {
+                        const result = await getIdentityUserClaims(editModalDataId!);
+                        return {
+                            success: true,
+                            data: (result.items ?? []).map((x, index) => {
+                                return { ...x, id: index.toString() };
+                            }),
+                        };
+                    }}
+                    value={claimsEditValues}
+                    onChange={setClaimsEditValues}
+                    columns={[
+                        {
+                            dataIndex: 'claimType',
+                            title: intl.formatMessage({ id: 'page.identityUser.claims.field.type' }),
+                            request: async () => {
+                                return allClaimTypes.map((x) => {
+                                    return {
+                                        label: x.name,
+                                        value: x.name,
+                                    };
+                                });
+                            },
+                            fieldProps: {
+                                onChange: () => {},
+                            },
+                            formItemProps: (form, e) => {
+                                return {
+                                    rules: [{ required: true }],
+                                };
+                            },
+                            dependencies: ['claimType'],
+                        },
+                        {
+                            dataIndex: 'claimValue',
+                            title: intl.formatMessage({ id: 'page.identityUser.claims.field.value' }),
+                        },
+                        {
+                            title: intl.formatMessage({ id: 'common.dict.table-action' }),
+                            valueType: 'option',
+                            width: 150,
+                            render: (text, record, _, action) => [
+                                <a
+                                    key="editable"
+                                    onClick={() => {
+                                        action?.startEditable?.(record.id);
+                                    }}
+                                >
+                                    {intl.formatMessage({ id: 'common.dict.edit' })}
+                                </a>,
+                                <a
+                                    key="delete"
+                                    onClick={() => {
+                                        setClaimsEditValues(claimsEditValues.filter((item) => item.id !== record.id));
+                                    }}
+                                >
+                                    {intl.formatMessage({ id: 'common.dict.delete' })}
+                                </a>,
+                            ],
+                        },
+                    ]}
+                    rowKey="id"
+                    recordCreatorProps={{
+                        record: () => ({ id: (Math.random() * 1000000).toFixed(0), claimType: '', claimValue: '' }),
+                    }}
+                />
+            </Modal>
         </PageContainer>
     );
 };

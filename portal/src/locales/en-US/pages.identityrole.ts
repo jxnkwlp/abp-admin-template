@@ -8,4 +8,9 @@
     'page.identityRole.field.isPublic': 'Public',
     'page.identityRole.field.concurrencyStamp': 'Concurrency Stamp',
     'page.identityRole.permission': 'Permission',
+    'page.identityRole.claims': 'Claims',
+    'page.identityRole.claims.field.type': 'Type',
+    'page.identityRole.claims.field.value': 'Value',
+    'page.identityRole.moveUsers': 'Move users',
+    'page.identityRole.moveUsers.targetName': 'Target Name',
 };

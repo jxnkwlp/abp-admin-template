@@ -40,4 +40,7 @@
     'page.identityUser.emailConfirmed': 'Email Confirmed',
     'page.identityUser.phonenumberConfirmed': 'Phone Number Confirmed',
     'page.identityUser.permissions': 'Permissions',
+
+    'page.identityUser.claims.field.type': 'Type',
+    'page.identityUser.claims.field.value': 'Value',
 };

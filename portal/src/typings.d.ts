@@ -27,22 +27,21 @@ declare module 'react' {
     }
 }
 
-// import axios from 'axios';
+import { AxiosResponseHeaders, AxiosRequestConfig } from 'axios';
 
-// declare module 'axios' {
-//     interface AxiosResponse<T = any, D = any> {
-//         a: string;
-//     }
-//     // export interface AxiosResponse<T = any, D = any>  {
-//     //     data: T;
-//     //     status: number;
-//     //     statusText: string;
-//     //     headers: AxiosResponseHeaders;
-//     //     config: AxiosRequestConfig<D>;
-//     //     request?: any;
-//     //   }
-//     // interface AxiosResponseWithStatus<D = null> {
-//     //     ok?: boolean;
-//     // }
-//     // export interface AxiosResponse<D> extends AxiosResponseWithStatus<D> {}
-// }
+declare module 'axios' {
+    interface AxiosResponse<T = any> {
+        ok?: boolean;
+        data?: T;
+    }
+
+    export interface AxiosResponse<T = any, D = any> {
+        ok?: boolean;
+        data: T;
+        status: number;
+        statusText: string;
+        headers: AxiosResponseHeaders;
+        config: AxiosRequestConfig<D>;
+        request?: any;
+    }
+}
