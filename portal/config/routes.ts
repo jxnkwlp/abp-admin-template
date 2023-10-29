@@ -76,6 +76,12 @@ export default [
                 component: './system/identity/claim-types',
             },
             {
+                path: '/management/identity-clients',
+                name: 'identity-clients',
+                icon: 'DashboardOutlined',
+                component: './system/identity/clients',
+            },
+            {
                 path: '/management/file/containers',
                 name: 'file-container',
                 icon: 'DashboardOutlined',

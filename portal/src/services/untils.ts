@@ -15,17 +15,13 @@ export const showDownloadFile = (fileName: string, data: any, contentType: strin
     window.URL.revokeObjectURL(url);
 };
 
-export const enumToStatus = (value: any) => {
+export const enumToStatus = (value: any, valueAsInteger: boolean = true) => {
     const result = Object.keys(value)
-        .filter((x) => isInteger(x))
+        .filter((x) => parseInt(x) >= 0)
         .map((x) => {
-            return {
-                [x]: {
-                    text: value[x],
-                },
-            };
+            return valueAsInteger ? [parseInt(x), value[x]] : [x, value[x]];
         });
-    return result;
+    return Object.fromEntries(result);
 };
 
 export const enumToOptions = (value: any, valueAsInteger: boolean = true) => {

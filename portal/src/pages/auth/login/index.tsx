@@ -113,8 +113,6 @@ const Login: React.FC = () => {
                     id: 'pages.login.notAllowed',
                 }),
             );
-        } else if (result?.result == AccountLoginResultType.RequiresTwoFactor) {
-            // TODO
         } else {
             message.error(
                 intl.formatMessage({
@@ -132,7 +130,7 @@ const Login: React.FC = () => {
 
             message.success(
                 intl.formatMessage({
-                    id: 'pages.forgetPassword.sent',
+                    id: 'pages.login.forgotPassword.send',
                 }),
             );
         }
@@ -157,7 +155,7 @@ const Login: React.FC = () => {
                     padding: '32px 0',
                 }}
             >
-                <LoginForm<API.UserLoginInfo>
+                <LoginForm<API.AccountLoginRequest>
                     contentStyle={{
                         minWidth: 280,
                         maxWidth: '75vw',
@@ -310,6 +308,7 @@ const Login: React.FC = () => {
                 </LoginForm>
             </div>
             <Footer />
+
             {/* forgetPassword */}
             <ModalForm
                 title={intl.formatMessage({

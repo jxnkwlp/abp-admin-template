@@ -15,6 +15,7 @@ import profile from './en-US/pages.profile';
 import identitysecuritylog from './en-US/pages.identitysecuritylog';
 import auditlog from './en-US/pages.auditlog';
 import identityclaimtype from './en-US/pages.identityclaimtype';
+import identityclient from './en-US/pages.identityclient';
 
 export default {
     'navBar.lang': 'Languages',
@@ -42,4 +43,5 @@ export default {
     ...identitysecuritylog,
     ...auditlog,
     ...identityclaimtype,
+    ...identityclient,
 };

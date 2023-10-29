@@ -8,6 +8,7 @@ module.exports = {
         'no-shadow': 'off',
         eqeqeq: 'off',
         '@typescript-eslint/no-shadow': ['off'],
+        'no-unused-vars': ['warn'],
         '@typescript-eslint/no-unused-vars': ['warn'],
     },
     parserOptions: {

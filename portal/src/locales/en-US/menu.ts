@@ -66,4 +66,5 @@ export default {
     'menu.management.security-log': 'Security Logs',
     'menu.management.audit-log': 'Audit Logs',
     'menu.management.claim-types': 'Claim Types',
+    'menu.management.identity-clients': 'Identity Clients',
 };
