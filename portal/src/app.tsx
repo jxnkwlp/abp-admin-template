@@ -4,7 +4,7 @@ import { SettingDrawer } from '@ant-design/pro-components';
 import type { RunTimeLayoutConfig } from '@umijs/max';
 import { history } from '@umijs/max';
 import defaultSettings from '../config/defaultSettings';
-import { requestConfig } from './requestConfig.1';
+import { requestConfig } from './requestConfig';
 import { getAbpApplicationConfiguration } from './services/AbpApplicationConfiguration';
 import { API } from './services/typings';
 import { CheckCircleTwoTone, CloseCircleTwoTone } from '@ant-design/icons';
