@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Hangfire;
 using Hangfire.MemoryStorage;
-using Hangfire.Redis;
 using Hangfire.Redis.StackExchange;
 using Medallion.Threading;
 using Medallion.Threading.FileSystem;
@@ -24,6 +24,7 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using OpenIddict.Validation.AspNetCore;
+using Owl.Abp.CultureMap;
 using Passingwind.Abp.FileManagement.Files;
 using Passingwind.Abp.FileManagement.Options;
 using Passingwind.Abp.Identity.AspNetCore;
@@ -380,24 +381,25 @@ public class ZeroWebModule : AbpModule
     {
         Configure<AbpLocalizationOptions>(options =>
         {
-            options.Languages.Add(new LanguageInfo("en", "en", "English", "gb"));
+            options.Languages.Add(new LanguageInfo("en", "en", "English"));
             options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
         });
 
-        //Configure<OwlCultureMapOptions>(options =>
-        //{
-        //    CultureMapInfo zhHansCultureMapInfo = new CultureMapInfo
-        //    {
-        //        TargetCulture = "zh-Hans",
-        //        SourceCultures = new List<string>
-        //        {
-        //            "zh", "zh-CN"
-        //        }
-        //    };
+        Configure<OwlCultureMapOptions>(options =>
+        {
+            CultureMapInfo zhHansCultureMapInfo = new CultureMapInfo
+            {
+                TargetCulture = "zh-Hans",
+                SourceCultures = new List<string>
+                {
+                    "zh",
+                    "zh-CN"
+                }
+            };
 
-        //    options.CulturesMaps.Add(zhHansCultureMapInfo);
-        //    options.UiCulturesMaps.Add(zhHansCultureMapInfo);
-        //});
+            options.CulturesMaps.Add(zhHansCultureMapInfo);
+            options.UiCulturesMaps.Add(zhHansCultureMapInfo);
+        });
     }
 
     private void ConfigureVirtualFileSystem(IWebHostEnvironment hostingEnvironment)
@@ -449,13 +451,12 @@ public class ZeroWebModule : AbpModule
         {
             app.UseDeveloperExceptionPage();
         }
-
-        app.UseAbpRequestLocalization();
-
-        if (!env.IsDevelopment())
+        else
         {
             app.UseExceptionHandler("/Error");
         }
+
+        app.UseOwlRequestLocalization();
 
         app.UseResponseCaching();
         app.UseResponseCompression();

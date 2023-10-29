@@ -1,0 +1,16 @@
+﻿export default {
+    'page.identityRole': '身份角色',
+    'page.identityRole.field.extraProperties': '额外属性',
+    'page.identityRole.field.id': 'Id',
+    'page.identityRole.field.name': '名称',
+    'page.identityRole.field.isDefault': '默认',
+    'page.identityRole.field.isStatic': '静态',
+    'page.identityRole.field.isPublic': '公开',
+    'page.identityRole.field.concurrencyStamp': '并发标记',
+    'page.identityRole.permission': '权限',
+    'page.identityRole.claims': '声明',
+    'page.identityRole.claims.field.type': '类型',
+    'page.identityRole.claims.field.value': '值',
+    'page.identityRole.moveUsers': '移动用户',
+    'page.identityRole.moveUsers.targetName': '目标名称',
+};

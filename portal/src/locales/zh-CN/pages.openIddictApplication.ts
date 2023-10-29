@@ -1,0 +1,18 @@
+﻿export default {
+    'page.openIddictApplication': '打开 Iddict 应用程序',
+    'page.openIddictApplication.field.clientId': '客户端 ID',
+    'page.openIddictApplication.field.type': '类型',
+    'page.openIddictApplication.field.consentType': '同意类型',
+    'page.openIddictApplication.field.displayName': '显示名称',
+    'page.openIddictApplication.field.clientSecret': '客户端密钥',
+    'page.openIddictApplication.field.clientUri': '客户端 Uri',
+    'page.openIddictApplication.field.logoUri': '徽标 Uri',
+    'page.openIddictApplication.field.logo': '徽标',
+    'page.openIddictApplication.field.properties': '属性',
+    'page.openIddictApplication.field.displayNames': '显示名称',
+    'page.openIddictApplication.field.redirectUris': '重定向 Uris',
+    'page.openIddictApplication.field.postLogoutRedirectUris': '注销后重定向 Uris',
+    'page.openIddictApplication.field.requirements': '要求',
+    'page.openIddictApplication.field.grantTypes': '授予类型',
+    'page.openIddictApplication.field.scopes': '范围',
+};

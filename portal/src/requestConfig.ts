@@ -1,4 +1,4 @@
-﻿import type { RequestConfig, RequestOptions } from '@umijs/max';
+﻿import { useLocation, type RequestConfig, type RequestOptions, getLocale } from '@umijs/max';
 import { App, message } from 'antd';
 import { GlobErrorType } from './services/global';
 
@@ -50,6 +50,7 @@ export const requestConfig: RequestConfig = {
     requestInterceptors: [
         (config: RequestOptions) => {
             // config.skipErrorHandler = true;
+            if (config.headers) config.headers['Accept-Language'] = getLocale() ?? 'en';
             return { ...config };
         },
     ],

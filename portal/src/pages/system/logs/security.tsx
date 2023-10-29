@@ -81,8 +81,8 @@ const IdentitySecurityLog: React.FC = () => {
                         title: intl.formatMessage({ id: 'common.dict.table-action' }),
                         valueType: 'option',
                         align: 'center',
-                        width: 120,
-                        render: (text, record, _, action) => [
+                        width: 80,
+                        render: (text, record, _, action) => (
                             <Popconfirm
                                 key="delete"
                                 title={intl.formatMessage({ id: 'common.dict.delete.confirm' })}
@@ -93,8 +93,8 @@ const IdentitySecurityLog: React.FC = () => {
                                 }}
                             >
                                 <a>{intl.formatMessage({ id: 'common.dict.delete' })}</a>
-                            </Popconfirm>,
-                        ],
+                            </Popconfirm>
+                        ),
                     },
                 ]}
                 form={{

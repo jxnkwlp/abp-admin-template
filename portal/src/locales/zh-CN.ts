@@ -3,12 +3,21 @@ import component from './zh-CN/component';
 import globalHeader from './zh-CN/globalHeader';
 import menu from './zh-CN/menu';
 import pages from './zh-CN/pages';
-import role from './zh-CN/pages.role';
-import user from './zh-CN/pages.user';
 import pwa from './zh-CN/pwa';
 import settingDrawer from './zh-CN/settingDrawer';
 import settings from './zh-CN/settings';
-import files from './zh-CN/pages.file'
+import identityrole from './zh-CN/pages.identityrole';
+import identityuser from './zh-CN/pages.identityuser';
+import organizationunit from './zh-CN/pages.organizationunit';
+import file from './zh-CN/pages.file';
+import settings2 from './zh-CN/pages.settings';
+import profile from './zh-CN/pages.profile';
+import identitysecuritylog from './zh-CN/pages.identitysecuritylog';
+import auditlog from './zh-CN/pages.auditlog';
+import identityclaimtype from './zh-CN/pages.identityclaimtype';
+import identityclient from './zh-CN/pages.identityclient';
+import openIddictApplication from './zh-CN/pages.openIddictApplication';
+import openIddictScope from './zh-CN/pages.openIddictScope';
 
 export default {
     'navBar.lang': '语言',
@@ -27,7 +36,16 @@ export default {
     ...pwa,
     ...component,
     ...common,
-    ...user,
-    ...role,
-    ...files,
+    ...identityrole,
+    ...identityuser,
+    ...organizationunit,
+    ...settings2,
+    ...file,
+    ...profile,
+    ...identitysecuritylog,
+    ...auditlog,
+    ...identityclaimtype,
+    ...identityclient,
+    ...openIddictApplication,
+    ...openIddictScope,
 };

@@ -3,13 +3,13 @@ import component from './en-US/component';
 import globalHeader from './en-US/globalHeader';
 import menu from './en-US/menu';
 import pages from './en-US/pages';
-import file from './en-US/pages.file';
 import pwa from './en-US/pwa';
 import settingDrawer from './en-US/settingDrawer';
 import settings from './en-US/settings';
 import identityrole from './en-US/pages.identityrole';
 import identityuser from './en-US/pages.identityuser';
 import organizationunit from './en-US/pages.organizationunit';
+import file from './en-US/pages.file';
 import settings2 from './en-US/pages.settings';
 import profile from './en-US/pages.profile';
 import identitysecuritylog from './en-US/pages.identitysecuritylog';
@@ -36,11 +36,11 @@ export default {
     ...component,
     ...common,
     ...pages,
-    ...file,
     ...identityrole,
     ...identityuser,
     ...organizationunit,
     ...settings2,
+    ...file,
     ...profile,
     ...identitysecuritylog,
     ...auditlog,

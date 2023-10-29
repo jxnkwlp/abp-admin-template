@@ -33,13 +33,13 @@
 
   <ItemGroup>
     <PackageReference Include="DistributedLock.FileSystem" Version="1.0.1" />
-    <PackageReference Include="DistributedLock.Redis" Version="1.0.2" />
-    <!--<PackageReference Include="Hangfire.Core" Version="1.7.29" />-->
+    <PackageReference Include="DistributedLock.Redis" Version="1.0.2" /> 
     <PackageReference Include="Hangfire.MemoryStorage" Version="1.8.0" />
     <PackageReference Include="Hangfire.Redis.StackExchange" Version="1.9.0" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.4" />
     <PackageReference Include="Passingwind.SwaggerExtensions" Version="0.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Owl.Abp.CultureMap" Version="7.0.0" />
     <!--<PackageReference Include="SkyAPM.Agent.AspNetCore" Version="2.1.0" />-->
     <!--<PackageReference Include="SkyAPM.Diagnostics.EntityFrameworkCore" Version="2.1.0" />
     <PackageReference Include="SkyAPM.Diagnostics.HttpClient" Version="2.1.0" />-->

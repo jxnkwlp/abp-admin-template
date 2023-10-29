@@ -1,0 +1,15 @@
+﻿export default {
+    'page.identitySecurityLog': '身份安全日志',
+    'page.identitySecurityLog.field.tenantId': '租户 ID',
+    'page.identitySecurityLog.field.applicationName': '应用程序名称',
+    'page.identitySecurityLog.field.identity': '身份',
+    'page.identitySecurityLog.field.action': '操作',
+    'page.identitySecurityLog.field.userId': '用户 ID',
+    'page.identitySecurityLog.field.userName': '用户名',
+    'page.identitySecurityLog.field.tenantName': '租户名称',
+    'page.identitySecurityLog.field.clientId': '客户端 ID',
+    'page.identitySecurityLog.field.correlationId': '相关 ID',
+    'page.identitySecurityLog.field.clientIpAddress': '客户端 IP 地址',
+    'page.identitySecurityLog.field.browserInfo': '浏览器信息',
+    'page.identitySecurityLog.field.creationTime': '创建时间',
+};
