@@ -33,18 +33,16 @@ export default [
         icon: 'DashboardOutlined',
         component: './dashboard',
     },
-
     {
         path: '/file-management',
         name: 'file-management',
-        icon: 'DashboardOutlined',
+        icon: 'FileSearchOutlined',
         component: './files',
     },
-
     {
         path: '/management',
         name: 'management',
-        icon: 'DashboardOutlined',
+        icon: 'SettingOutlined',
         routes: [
             // identity
             {
@@ -54,68 +52,73 @@ export default [
             {
                 path: '/management/users',
                 name: 'users',
-                icon: 'DashboardOutlined',
                 component: './system/identity/users',
             },
             {
                 path: '/management/roles',
                 name: 'roles',
-                icon: 'DashboardOutlined',
                 component: './system/identity/roles',
             },
             {
                 path: '/management/organizations',
                 name: 'organizations',
-                icon: 'DashboardOutlined',
                 component: './system/identity/organizations',
             },
             {
                 path: '/management/claim-types',
                 name: 'claim-types',
-                icon: 'DashboardOutlined',
                 component: './system/identity/claim-types',
             },
             {
                 path: '/management/identity-clients',
                 name: 'identity-clients',
-                icon: 'DashboardOutlined',
                 component: './system/identity/clients',
             },
             {
                 path: '/management/file/containers',
                 name: 'file-container',
-                icon: 'DashboardOutlined',
                 component: './files/container',
             },
             {
                 path: '/management/settings/identity',
                 name: 'settings.identity',
-                icon: 'DashboardOutlined',
                 component: './system/settings/identity',
             },
             {
                 path: '/management/settings/account',
                 name: 'settings.account',
-                icon: 'DashboardOutlined',
                 component: './system/settings/account',
             },
             {
                 path: '/management/settings/emailing',
                 name: 'settings.emailing',
-                icon: 'DashboardOutlined',
                 component: './system/settings/emailing',
             },
             {
                 path: '/management/security-logs',
                 name: 'security-log',
-                icon: 'DashboardOutlined',
                 component: './system/logs/security',
             },
             {
                 path: '/management/audit-logs',
                 name: 'audit-log',
-                icon: 'DashboardOutlined',
                 component: './system/logs/auditing',
+            },
+            {
+                path: '/management/identity-server',
+                name: 'identity-server',
+                routes: [
+                    {
+                        path: '/management/identity-server/clients',
+                        name: 'clients',
+                        component: './system/identity-server/clients',
+                    },
+                    {
+                        path: '/management/identity-server/scopes',
+                        name: 'scopes',
+                        component: './system/identity-server/scopes',
+                    },
+                ],
             },
         ],
     },

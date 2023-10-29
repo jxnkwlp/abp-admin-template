@@ -16,6 +16,8 @@ import identitysecuritylog from './en-US/pages.identitysecuritylog';
 import auditlog from './en-US/pages.auditlog';
 import identityclaimtype from './en-US/pages.identityclaimtype';
 import identityclient from './en-US/pages.identityclient';
+import openIddictApplication from './en-US/pages.openIddictApplication';
+import openIddictScope from './en-US/pages.openIddictScope';
 
 export default {
     'navBar.lang': 'Languages',
@@ -44,4 +46,6 @@ export default {
     ...auditlog,
     ...identityclaimtype,
     ...identityclient,
+    ...openIddictApplication,
+    ...openIddictScope,
 };

@@ -67,4 +67,7 @@ export default {
     'menu.management.audit-log': 'Audit Logs',
     'menu.management.claim-types': 'Claim Types',
     'menu.management.identity-clients': 'Identity Clients',
+    'menu.management.identity-server': 'Identity Server',
+    'menu.management.identity-server.clients': 'Clients',
+    'menu.management.identity-server.scopes': 'Scopes',
 };
