@@ -45,7 +45,7 @@ const handleIdentityClaimTypeEdit = async (id: string, data: any) => {
 
 const handleIdentityClaimTypeDelete = async (id: string) => {
     const response = await deleteIdentityClaimType(id);
-    if (response) {
+    if (response.ok) {
         message.success(formatMessage({ id: 'common.dict.deleted.success' }));
         return true;
     }
@@ -84,12 +84,14 @@ const IdentityClaimType: React.FC = () => {
                         title: intl.formatMessage({ id: 'page.identityClaimType.field.required' }),
                         search: false,
                         valueEnum: trueOrfalseEnum,
+                        align: 'center',
                     },
                     {
                         dataIndex: 'isStatic',
                         title: intl.formatMessage({ id: 'page.identityClaimType.field.isStatic' }),
                         search: false,
                         valueEnum: trueOrfalseEnum,
+                        align: 'center',
                     },
                     {
                         dataIndex: 'regex',

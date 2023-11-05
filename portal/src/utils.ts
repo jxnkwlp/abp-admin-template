@@ -2,6 +2,7 @@ export type LoopItemType = {
     id: string;
     children?: LoopItemType[];
 };
+
 export function loopListToTree<T extends LoopItemType>(
     data: T[],
     filter: (item: T, key?: string) => boolean,

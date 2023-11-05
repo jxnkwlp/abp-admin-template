@@ -180,7 +180,6 @@ const Identity: React.FC = () => {
                                             }
                                             rules={[{ required: true }]}
                                             options={enumToOptions(IdentityTwofactoryBehaviour)}
-                                            // options={[{ label: '000', value: 0 }]}
                                             width="sm"
                                         />
                                         <ProFormSwitch

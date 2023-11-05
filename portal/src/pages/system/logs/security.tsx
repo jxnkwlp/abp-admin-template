@@ -7,7 +7,7 @@ import React, { useRef } from 'react';
 
 const handleIdentitySecurityLogDelete = async (id: string) => {
     const response = await deleteIdentitySecurityLog(id);
-    if (response) {
+    if (response.ok) {
         message.success(formatMessage({ id: 'common.dict.deleted.success' }));
         return true;
     }

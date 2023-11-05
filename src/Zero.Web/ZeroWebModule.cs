@@ -273,9 +273,9 @@ public class ZeroWebModule : AbpModule
     {
         Configure<AbpJsonOptions>(options =>
         {
-            // !!you can add more here!!
             options.InputDateTimeFormats.Add("yyyy/MM/dd HH:mm:ss"); // 2009/06/15 13:45:30
             options.InputDateTimeFormats.Add("yyyy/MM/ddTHH:mm:sszz");  // 2009/06/15T13:45:30+07:00
+            options.InputDateTimeFormats.Add("yyyy-MM-dd HH:mm:ss");
         });
 
         Configure<AbpSystemTextJsonSerializerOptions>(options => options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull);

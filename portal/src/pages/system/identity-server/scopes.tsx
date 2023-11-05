@@ -31,7 +31,7 @@ const handleOpenIddictScopeEdit = async (id: string, data: any) => {
 
 const handleOpenIddictScopeDelete = async (id: string) => {
     const response = await deleteOpenIddictScope(id);
-    if (response) {
+    if (response.ok) {
         message.success(formatMessage({ id: 'common.dict.deleted.success' }));
         return true;
     }

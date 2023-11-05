@@ -69,4 +69,5 @@ export default {
     'menu.management.identity-server': '身份服务器',
     'menu.management.identity-server.clients': '客户端',
     'menu.management.identity-server.scopes': '范围',
+    'menu.management.dictionaries': '字典',
 };

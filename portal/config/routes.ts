@@ -120,6 +120,11 @@ export default [
                     },
                 ],
             },
+            {
+                path: '/management/dictionaries',
+                name: 'dictionaries',
+                component: './system/dictionaries',
+            },
         ],
     },
 

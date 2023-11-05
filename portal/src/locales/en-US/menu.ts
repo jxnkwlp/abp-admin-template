@@ -70,4 +70,5 @@ export default {
     'menu.management.identity-server': 'Identity Server',
     'menu.management.identity-server.clients': 'Clients',
     'menu.management.identity-server.scopes': 'Scopes',
+    'menu.management.dictionaries': 'Dictionaries',
 };

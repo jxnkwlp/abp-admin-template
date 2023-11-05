@@ -18,6 +18,8 @@ import identityclaimtype from './zh-CN/pages.identityclaimtype';
 import identityclient from './zh-CN/pages.identityclient';
 import openIddictApplication from './zh-CN/pages.openIddictApplication';
 import openIddictScope from './zh-CN/pages.openIddictScope';
+import dictionaryGroup from './zh-CN/pages.dictionaryGroup';
+import dictionaryItem from './zh-CN/pages.dictionaryItem';
 
 export default {
     'navBar.lang': '语言',
@@ -48,4 +50,6 @@ export default {
     ...identityclient,
     ...openIddictApplication,
     ...openIddictScope,
+    ...dictionaryGroup,
+    ...dictionaryItem,
 };

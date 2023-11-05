@@ -39,7 +39,7 @@ const handleOpenIddictApplicationEdit = async (id: string, data: any) => {
 
 const handleOpenIddictApplicationDelete = async (id: string) => {
     const response = await deleteOpenIddictApplication(id);
-    if (response) {
+    if (response.ok) {
         message.success(formatMessage({ id: 'common.dict.deleted.success' }));
         return true;
     }

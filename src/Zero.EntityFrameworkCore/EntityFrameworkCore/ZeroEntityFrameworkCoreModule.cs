@@ -2,6 +2,7 @@
 using Passingwind.Abp.DictionaryManagement.EntityFrameworkCore;
 using Passingwind.Abp.DynamicPermissionManagement.EntityFrameworkCore;
 using Passingwind.Abp.FileManagement.EntityFrameworkCore;
+using Passingwind.Abp.Identity.EntityFrameworkCore;
 using Passingwind.Abp.IdentityClientManagement.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -31,6 +32,7 @@ namespace Zero.EntityFrameworkCore;
     )]
 [DependsOn(typeof(FileManagementEntityFrameworkCoreModule))]
 [DependsOn(typeof(IdentityClientManagementEntityFrameworkCoreModule))]
+[DependsOn(typeof(IdentityEntityFrameworkCoreModule))]
 [DependsOn(typeof(DynamicPermissionManagementEntityFrameworkCoreModule))]
 [DependsOn(typeof(DictionaryManagementEntityFrameworkCoreModule))]
 public class ZeroEntityFrameworkCoreModule : AbpModule

@@ -18,6 +18,8 @@ import identityclaimtype from './en-US/pages.identityclaimtype';
 import identityclient from './en-US/pages.identityclient';
 import openIddictApplication from './en-US/pages.openIddictApplication';
 import openIddictScope from './en-US/pages.openIddictScope';
+import dictionaryGroup from './en-US/pages.dictionaryGroup';
+import dictionaryItem from './en-US/pages.dictionaryItem';
 
 export default {
     'navBar.lang': 'Languages',
@@ -48,4 +50,6 @@ export default {
     ...identityclient,
     ...openIddictApplication,
     ...openIddictScope,
+    ...dictionaryGroup,
+    ...dictionaryItem,
 };

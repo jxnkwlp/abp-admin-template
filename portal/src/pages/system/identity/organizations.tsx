@@ -43,7 +43,7 @@ const handleEdit = async (id: string, data: any) => {
 
 const handleDelete = async (id: string) => {
     const response = await deleteOrganizationUnit(id);
-    if (response) {
+    if (response.ok) {
         message.success(formatMessage({ id: 'common.dict.deleted.success' }));
         return true;
     }

@@ -2,6 +2,7 @@
 using Passingwind.Abp.DictionaryManagement.MongoDB;
 using Passingwind.Abp.DynamicPermissionManagement.MongoDB;
 using Passingwind.Abp.FileManagement.MongoDB;
+using Passingwind.Abp.Identity.MongoDB;
 using Passingwind.Abp.IdentityClientManagement.MongoDB;
 using Volo.Abp.AuditLogging.MongoDB;
 using Volo.Abp.BackgroundJobs.MongoDB;
@@ -29,6 +30,7 @@ namespace Zero.MongoDB;
     )]
 [DependsOn(typeof(FileManagementMongoDbModule))]
 [DependsOn(typeof(IdentityClientManagementMongoDbModule))]
+[DependsOn(typeof(IdentityMongoDbModule))]
 [DependsOn(typeof(DynamicPermissionManagementMongoDbModule))]
 [DependsOn(typeof(DictionaryManagementMongoDbModule))]
 public class ZeroMongoDbModule : AbpModule
