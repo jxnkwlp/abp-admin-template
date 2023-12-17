@@ -44,6 +44,9 @@ dependencies:
   rc-menu:
     specifier: ^9.12.2
     version: 9.12.2(react-dom@18.2.0)(react@18.2.0)
+  rc-scroll-anim:
+    specifier: ^2.7.6
+    version: 2.7.6
   rc-util:
     specifier: ^5.32.2
     version: 5.38.0(react-dom@18.2.0)(react@18.2.0)
@@ -6962,7 +6965,6 @@ packages:
     dependencies:
       core-js: 2.6.12
       regenerator-runtime: 0.11.1
-    dev: true
 
   /babel-types@6.26.0:
     resolution: {integrity: sha512-zhe3V/26rCWsEZK8kZN+HaQj5yQ1CilTObixFzKW1UWjqG7618Twz6YEsCnjfg5gBcJh02DrpCkS9h98ZqDY+g==}
@@ -7793,7 +7795,6 @@ packages:
     resolution: {integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==}
     deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
     requiresBuild: true
-    dev: true
 
   /core-js@3.28.0:
     resolution: {integrity: sha512-GiZn9D4Z/rSYvTeg1ljAIsEqFm0LaN9gVtwDCrKL80zHtS31p9BAjmTxVqTQDMpwlMolJZOFntUG2uwyj7DAqw==}
@@ -14103,7 +14104,6 @@ packages:
 
   /performance-now@2.1.0:
     resolution: {integrity: sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==}
-    dev: true
 
   /picocolors@0.2.1:
     resolution: {integrity: sha512-cMlDqaLEqfSaW8Z7N5Jw+lyIW869EzT73/F5lhtY9cLGoVxSXznfgfXMO0Z5K0o0Q2TkTXq+0KFsdnSe3jDViA==}
@@ -15120,7 +15120,6 @@ packages:
     resolution: {integrity: sha512-Sq4CW4QhwOHE8ucn6J34MqtZCeWFP2aQSmrlroYgqAV1PjStIhJXxYuTgUIfkEk7zTLjmIjLmU5q+fbD1NnOJA==}
     dependencies:
       performance-now: 2.1.0
-    dev: true
 
   /randombytes@2.1.0:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
@@ -15775,6 +15774,17 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
       resize-observer-polyfill: 1.5.1
 
+  /rc-scroll-anim@2.7.6:
+    resolution: {integrity: sha512-VwXJYXjZy9TtH1wcQIG7/yjt/Ay3VEjQl/TITaWzK9O7ujjOXRVOYY/tqKshmBMgaJ2oGeFQNmCN8zTwXguq0g==}
+    dependencies:
+      babel-runtime: 6.26.0
+      prop-types: 15.8.1
+      raf: 3.4.1
+      rc-tween-one: 2.7.3
+      react-lifecycles-compat: 3.0.4
+      tween-functions: 1.2.0
+    dev: false
+
   /rc-segmented@2.1.2(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-qGo1bCr83ESXpXVOCXjFe1QJlCAQXyi9KCiy8eX3rIMYlTeJr/ftySIaTnYsitL18SvWf5ZEHsfqIWoX0EMfFQ==}
     peerDependencies:
@@ -16147,6 +16157,17 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: true
+
+  /rc-tween-one@2.7.3:
+    resolution: {integrity: sha512-n4OPRLO6VMZHj61unq5KKxHMMfBz52bxob94fN3U5M9GqFg3H+T3TXnpHPnAK+cq/xBGo70ik2vB4Fpjo/txcA==}
+    dependencies:
+      babel-runtime: 6.26.0
+      prop-types: 15.8.1
+      raf: 3.4.1
+      react-lifecycles-compat: 3.0.4
+      style-utils: 0.2.1
+      tween-functions: 1.2.0
+    dev: false
 
   /rc-upload@4.3.5(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-EHlKJbhkgFSQHliTj9v/2K5aEuFwfUQgZARzD7AmAPOneZEPiCNF3n6PEWIuqz9h7oq6FuXgdR67sC5BWFxJbA==}
@@ -16802,7 +16823,6 @@ packages:
 
   /regenerator-runtime@0.11.1:
     resolution: {integrity: sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==}
-    dev: true
 
   /regenerator-runtime@0.13.11:
     resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==}
@@ -18078,6 +18098,10 @@ packages:
     resolution: {integrity: sha512-Dj1Okke1C3uKKwQcetra4jSuk0DqbzbYtXipzFlFMZtowbF1x7BKJwB9AayVMyFARvU8EDrZdcax4At/452cAg==}
     dev: true
 
+  /style-utils@0.2.1:
+    resolution: {integrity: sha512-eKRIfWnUSdBqe2ko+qisUwBSlfWpHru89geRqzmScpDhkPW1ksmE04d//nDcXeF+TVK5cnBG90mMmHgxyxXleQ==}
+    dev: false
+
   /styled-components@6.0.0-rc.0(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-3+Lnu1NC5JuieYi8dV/nhmlK7/yzqZW43u4P7WgIJfu5Dq5AiPU3t4efu0nWLmlMEmWrSXdrinxfbDnqnpP6hg==}
     engines: {node: '>= 14'}
@@ -18922,7 +18946,6 @@ packages:
 
   /tween-functions@1.2.0:
     resolution: {integrity: sha512-PZBtLYcCLtEcjL14Fzb1gSxPBeL7nWvGhO5ZFPGqziCcr8uvHp0NDmdjBchp6KHL+tExcg0m3NISmKxhU394dA==}
-    dev: true
 
   /tweetnacl@0.14.5:
     resolution: {integrity: sha512-KXXFFdAbFXY4geFIwoyNK+f5Z1b7swfXABfL7HXCmoIWMKU3dmS26672A4EeQtDzLKy7SXmfBu51JolvEKwtGA==}

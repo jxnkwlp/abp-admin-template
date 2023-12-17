@@ -46,6 +46,8 @@ export default {
     'menu.editor.mind': 'Mind Editor',
     'menu.editor.koni': 'Koni Editor',
     //
+    'menu.reset-password': 'Reset Password',
+    //
     'menu.account': 'Account',
     'menu.account.center': 'Account Center',
     'menu.account.settings': 'Account Settings',

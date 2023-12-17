@@ -11,8 +11,8 @@
 
   <PropertyGroup>
     <SharpAbpVersion>2.9.0</SharpAbpVersion>
-    <AccountVersion>0.2.5</AccountVersion>
-    <IdentityVersion>0.2.5</IdentityVersion>
+    <AccountVersion>0.2.6</AccountVersion>
+    <IdentityVersion>0.2.6</IdentityVersion>
     <DictionaryVersion>0.2.0</DictionaryVersion>
     <PermissionVersion>0.2.0</PermissionVersion>
     <FileManagementVersion>0.2.1</FileManagementVersion>

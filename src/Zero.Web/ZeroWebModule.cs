@@ -32,6 +32,7 @@ using Passingwind.Abp.IdentityClientManagement;
 using StackExchange.Redis;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Volo.Abp;
+using Volo.Abp.Account;
 using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.Autofac;
@@ -110,6 +111,7 @@ public class ZeroWebModule : AbpModule
         var hostingEnvironment = context.Services.GetHostingEnvironment();
         var configuration = context.Services.GetConfiguration();
 
+        ConfigureAccount();
         ConfigureAuthentication(context.Services);
         ConfigureAutoMapper();
         ConfigureBlobStoring(configuration, hostingEnvironment);
@@ -138,6 +140,11 @@ public class ZeroWebModule : AbpModule
     }
 
     #region Configure Services
+
+    private void ConfigureAccount()
+    {
+        Configure<AppUrlOptions>(options => options.Applications["MVC"].Urls[AccountUrlNames.PasswordReset] = "auth/reset-password");
+    }
 
     private void ConfigureCookies()
     {

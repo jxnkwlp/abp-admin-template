@@ -1,20 +1,31 @@
 import { Footer } from '@/components';
 import { accountSendPasswordResetCode } from '@/services/Account';
-import { accountLoginLogin } from '@/services/AccountLogin';
+import {
+    accountLoginChangePassword,
+    accountLoginLogin,
+    accountLoginLoginWithTfa,
+    accountLoginSendTfaToken,
+    accountLoginVerifyAuthenticatorToken,
+    getAccountLoginAuthenticatorInfo,
+    getAccountLoginTfaStatus,
+} from '@/services/AccountLogin';
 import { AccountLoginResultType } from '@/services/enums';
 import { API } from '@/services/typings';
 import {
     AlipayCircleOutlined,
     LockOutlined,
+    MailOutlined,
     MobileOutlined,
+    PhoneOutlined,
     TaobaoCircleOutlined,
     UserOutlined,
     WeiboCircleOutlined,
 } from '@ant-design/icons';
-import { LoginForm, ModalForm, ProFormCaptcha, ProFormCheckbox, ProFormText } from '@ant-design/pro-components';
+import { CheckCard, LoginForm, ModalForm, ProFormCaptcha, ProFormCheckbox, ProFormText } from '@ant-design/pro-components';
 import { useEmotionCss } from '@ant-design/use-emotion-css';
 import { FormattedMessage, Helmet, SelectLang, history, useIntl, useModel } from '@umijs/max';
-import { Tabs, message } from 'antd';
+import { useAsyncEffect } from 'ahooks';
+import { Alert, Avatar, QRCode, Tabs, message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import Settings from '../../../../config/defaultSettings';
 
@@ -65,9 +76,6 @@ const Lang = () => {
 };
 
 const Login: React.FC = () => {
-    const [type, setType] = useState<string>('account');
-    const { refresh } = useModel('@@initialState');
-
     const containerClassName = useEmotionCss(() => {
         return {
             display: 'flex',
@@ -79,20 +87,61 @@ const Login: React.FC = () => {
         };
     });
 
+    const { refresh } = useModel('@@initialState');
+
+    const intl = useIntl();
+
+    const [loginType, setLoginType] = useState<'account' | 'mobile'>('account');
+
+    const [forgetPasswordModalOpen, setForgetPasswordModalOpen] = useState(false);
+
+    const [session, setSession] = useState<'login' | 'tfa-code' | 'tfa-providers' | 'change-password' | 'authenticator'>(
+        'login',
+    );
+
+    const [selectTfaProvider, setSelectTfaProvider] = useState('');
+    const [tfaProviders, setTfaProviders] = useState<string[]>([]);
+
+    const [authenticatorInfo, setAuthenticatorInfo] = useState<API.AccountAuthenticatorInfo>();
+
     useEffect(() => {
         refresh();
     }, [0]);
 
-    const [forgetPasswordModalOpen, setForgetPasswordModalOpen] = useState(false);
+    useAsyncEffect(async () => {
+        // if (session == 'tfa-code') {
+        //     if (tfaProvider) {
+        //         const result = await accountLoginSendTfaToken(tfaProvider);
+        //     }
+        // }
+        // console.debug('ps=>', session);
+    }, [session]);
 
-    const intl = useIntl();
+    const handleOnTfa = async () => {
+        const result = await getAccountLoginTfaStatus();
+        const providers = result?.providers ?? [];
+        setTfaProviders(providers);
+        setSelectTfaProvider('');
+        if (result?.enabled == true && providers.length > 0) {
+            setSelectTfaProvider(providers[0]);
+            setSession('tfa-providers');
+        } else {
+            const result = await getAccountLoginAuthenticatorInfo();
+            if (result) {
+                setAuthenticatorInfo(result);
+                setSession('authenticator');
+            }
+        }
+    };
 
-    const handleSubmit = async (values: API.AccountLoginRequest) => {
-        const result = await accountLoginLogin(values);
+    const handleOnChangePassword = () => {
+        setSession('change-password');
+    };
 
+    const handleLoginResult = (result: API.AccountLoginResult) => {
         if (result?.result == AccountLoginResultType.Success) {
             const defaultLoginSuccessMessage = intl.formatMessage({
-                id: 'pages.login.success',
+                id: 'pages.login.result.success',
             });
             message.success(defaultLoginSuccessMessage);
 
@@ -104,27 +153,36 @@ const Login: React.FC = () => {
         } else if (result?.result == AccountLoginResultType.LockedOut) {
             message.error(
                 intl.formatMessage({
-                    id: 'pages.login.lockedOut',
+                    id: 'pages.login.result.lockedOut',
                 }),
             );
         } else if (result?.result == AccountLoginResultType.NotAllowed) {
             message.error(
                 intl.formatMessage({
-                    id: 'pages.login.notAllowed',
+                    id: 'pages.login.result.notAllowed',
                 }),
             );
+        } else if (result?.result == AccountLoginResultType.RequiresTwoFactor) {
+            handleOnTfa();
+        } else if (result?.result == AccountLoginResultType.RequiresChangePassword) {
+            handleOnChangePassword();
         } else {
             message.error(
                 intl.formatMessage({
-                    id: 'pages.login.failure',
+                    id: 'pages.login.result.failure',
                 }),
             );
         }
     };
 
+    const handleSubmit = async (values: API.AccountLoginRequest) => {
+        const result = await accountLoginLogin(values);
+
+        handleLoginResult(result);
+    };
+
     const handleForgetPassword = async (values: any) => {
         const result = await accountSendPasswordResetCode({ ...values, appName: 'MVC' });
-        console.log(result);
         if (result) {
             setForgetPasswordModalOpen(false);
 
@@ -136,6 +194,28 @@ const Login: React.FC = () => {
         }
 
         return true;
+    };
+
+    const handleTfaLogin = async (values: any) => {
+        const result = await accountLoginLoginWithTfa(selectTfaProvider, values);
+        handleLoginResult(result);
+    };
+
+    const handleChangePassword = async (values: any) => {
+        const result = await accountLoginChangePassword(values);
+        if (result?.ok) {
+            message.success(intl.formatMessage({ id: 'common.dict.success' }));
+            setSession('login');
+            refresh();
+        }
+    };
+
+    const handleSetupAuthenticator = async (values: any) => {
+        const result = await accountLoginVerifyAuthenticatorToken(values);
+        if (result?.recoveryCodes) {
+            setSession('login');
+            refresh();
+        }
     };
 
     return (
@@ -155,7 +235,7 @@ const Login: React.FC = () => {
                     padding: '32px 0',
                 }}
             >
-                <LoginForm<API.AccountLoginRequest>
+                <LoginForm<API.AccountLoginRequest & API.AccountLoginWithTfaRequest>
                     contentStyle={{
                         minWidth: 280,
                         maxWidth: '75vw',
@@ -164,147 +244,310 @@ const Login: React.FC = () => {
                     title="Admin"
                     subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
                     initialValues={{}}
-                    actions={[<FormattedMessage key="loginWith" id="pages.login.loginWith" />, <ActionIcons key="icons" />]}
+                    actions={
+                        session == 'login' && [
+                            <FormattedMessage key="loginWith" id="pages.login.loginWith" />,
+                            <ActionIcons key="icons" />,
+                        ]
+                    }
                     onFinish={async (values) => {
-                        await handleSubmit(values);
+                        if (session == 'login') {
+                            await handleSubmit(values);
+                        } else if (session == 'tfa-code') {
+                            await handleTfaLogin(values);
+                        } else if (session == 'tfa-providers') {
+                            setSession('tfa-code');
+                        } else if (session == 'change-password') {
+                            await handleChangePassword(values);
+                        } else if (session == 'authenticator') {
+                            await handleSetupAuthenticator(values);
+                        }
+                    }}
+                    submitter={{
+                        searchConfig: {
+                            submitText:
+                                session == 'tfa-code' || session == 'authenticator'
+                                    ? intl.formatMessage({
+                                          id: 'pages.login.button.verfiy',
+                                      })
+                                    : session == 'tfa-providers'
+                                    ? intl.formatMessage({
+                                          id: 'pages.login.button.next',
+                                      })
+                                    : session == 'change-password'
+                                    ? intl.formatMessage({
+                                          id: 'common.dict.submit',
+                                      })
+                                    : intl.formatMessage({
+                                          id: 'pages.login.button.login',
+                                      }),
+                        },
                     }}
                 >
-                    <Tabs
-                        activeKey={type}
-                        onChange={setType}
-                        centered
-                        items={[
-                            {
-                                key: 'account',
-                                label: intl.formatMessage({
-                                    id: 'pages.login.accountLogin.tab',
-                                }),
-                            },
-                            {
-                                key: 'mobile',
-                                label: intl.formatMessage({
-                                    id: 'pages.login.phoneLogin.tab',
-                                }),
-                            },
-                        ]}
-                    />
-
-                    {type === 'account' && (
+                    {session == 'login' && (
                         <>
-                            <ProFormText
-                                name="userNameOrEmailAddress"
-                                fieldProps={{
-                                    size: 'large',
-                                    prefix: <UserOutlined />,
-                                    autoComplete: 'off',
-                                }}
-                                placeholder={intl.formatMessage({
-                                    id: 'pages.login.username.placeholder',
-                                })}
-                                rules={[
+                            <Tabs
+                                activeKey={loginType}
+                                onChange={setLoginType}
+                                centered
+                                items={[
                                     {
-                                        required: true,
-                                        message: <FormattedMessage id="pages.login.username.required" />,
+                                        key: 'account',
+                                        label: intl.formatMessage({
+                                            id: 'pages.login.accountLogin.tab',
+                                        }),
+                                    },
+                                    {
+                                        key: 'mobile',
+                                        label: intl.formatMessage({
+                                            id: 'pages.login.phoneLogin.tab',
+                                        }),
                                     },
                                 ]}
+                            />
+                            {loginType === 'account' && (
+                                <>
+                                    <ProFormText
+                                        name="userNameOrEmailAddress"
+                                        fieldProps={{
+                                            size: 'large',
+                                            prefix: <UserOutlined />,
+                                            autoComplete: 'off',
+                                        }}
+                                        placeholder={intl.formatMessage({
+                                            id: 'pages.login.username.placeholder',
+                                        })}
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: <FormattedMessage id="pages.login.username.required" />,
+                                            },
+                                        ]}
+                                    />
+                                    <ProFormText.Password
+                                        name="password"
+                                        fieldProps={{
+                                            size: 'large',
+                                            prefix: <LockOutlined />,
+                                            autoComplete: 'off',
+                                        }}
+                                        placeholder={intl.formatMessage({
+                                            id: 'pages.login.password.placeholder',
+                                        })}
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: <FormattedMessage id="pages.login.password.required" />,
+                                            },
+                                        ]}
+                                    />
+                                </>
+                            )}
+
+                            {loginType === 'mobile' && (
+                                <>
+                                    <ProFormText
+                                        fieldProps={{
+                                            size: 'large',
+                                            prefix: <MobileOutlined />,
+                                            autoComplete: 'off',
+                                        }}
+                                        name="phoneNumber"
+                                        placeholder={intl.formatMessage({
+                                            id: 'pages.login.phoneNumber.placeholder',
+                                        })}
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: <FormattedMessage id="pages.login.phoneNumber.required" />,
+                                            },
+                                            {
+                                                pattern: /^1\d{10}$/,
+                                                message: <FormattedMessage id="pages.login.phoneNumber.invalid" />,
+                                            },
+                                        ]}
+                                    />
+                                    <ProFormCaptcha
+                                        fieldProps={{
+                                            size: 'large',
+                                            prefix: <LockOutlined />,
+                                            autoComplete: 'off',
+                                        }}
+                                        captchaProps={{
+                                            size: 'large',
+                                        }}
+                                        placeholder={intl.formatMessage({
+                                            id: 'pages.login.captcha.placeholder',
+                                        })}
+                                        captchaTextRender={(timing, count) => {
+                                            if (timing) {
+                                                return `${count} ${intl.formatMessage({
+                                                    id: 'pages.getCaptchaSecondText',
+                                                })}`;
+                                            }
+                                            return intl.formatMessage({
+                                                id: 'pages.login.phoneLogin.getVerificationCode',
+                                            });
+                                        }}
+                                        name="captcha"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: <FormattedMessage id="pages.login.captcha.required" />,
+                                            },
+                                        ]}
+                                        onGetCaptcha={async () => {
+                                            message.info('TODO');
+                                        }}
+                                    />
+                                </>
+                            )}
+
+                            <div
+                                style={{
+                                    marginBottom: 24,
+                                }}
+                            >
+                                <ProFormCheckbox noStyle name="rememberMe">
+                                    <FormattedMessage id="pages.login.rememberMe" />
+                                </ProFormCheckbox>
+                                <a
+                                    style={{
+                                        float: 'right',
+                                    }}
+                                    onClick={() => {
+                                        setForgetPasswordModalOpen(true);
+                                    }}
+                                >
+                                    <FormattedMessage id="pages.login.forgotPassword" />
+                                </a>
+                            </div>
+                        </>
+                    )}
+                    {session == 'tfa-providers' && (
+                        <>
+                            <CheckCard.Group
+                                onChange={(value) => {
+                                    console.log(value);
+                                    setSelectTfaProvider(value as string);
+                                }}
+                            >
+                                {tfaProviders.indexOf('Email') >= 0 && (
+                                    <CheckCard
+                                        title={<FormattedMessage id="page.account.mfa.provider.email" />}
+                                        avatar={
+                                            <Avatar
+                                                style={{ backgroundColor: '#1677ffc2' }}
+                                                icon={<MailOutlined />}
+                                                size="large"
+                                            />
+                                        }
+                                        value="Email"
+                                    />
+                                )}
+                                {tfaProviders.indexOf('PhoneNumber') >= 0 && (
+                                    <CheckCard
+                                        title={<FormattedMessage id="page.account.mfa.provider.phoneNumber" />}
+                                        avatar={
+                                            <Avatar
+                                                style={{ backgroundColor: '#1677ffc2' }}
+                                                icon={<PhoneOutlined />}
+                                                size="large"
+                                            />
+                                        }
+                                        value="PhoneNumber"
+                                    />
+                                )}
+                                {tfaProviders.indexOf('Authenticator') >= 0 && (
+                                    <CheckCard
+                                        title={<FormattedMessage id="page.account.mfa.provider.authenticator" />}
+                                        avatar={
+                                            <Avatar
+                                                style={{ backgroundColor: '#1677ffc2' }}
+                                                icon={<MobileOutlined />}
+                                                size="large"
+                                            />
+                                        }
+                                        value="Authenticator"
+                                    />
+                                )}
+                            </CheckCard.Group>
+                        </>
+                    )}
+                    {session == 'tfa-code' && (
+                        <>
+                            {selectTfaProvider === 'Authenticator' ? (
+                                <ProFormText
+                                    rules={[{ required: true }, { max: 8 }]}
+                                    name="code"
+                                    label={intl.formatMessage({ id: 'pages.login.tfacode' })}
+                                    fieldProps={{ autoComplete: 'one-time-code', maxLength: 8 }}
+                                />
+                            ) : (
+                                <ProFormCaptcha
+                                    rules={[{ required: true }, { max: 8 }]}
+                                    name="code"
+                                    label={intl.formatMessage({ id: 'pages.login.tfacode' })}
+                                    fieldProps={{ autoComplete: 'one-time-code', maxLength: 8 }}
+                                    onGetCaptcha={async () => {
+                                        await accountLoginSendTfaToken(selectTfaProvider);
+                                    }}
+                                />
+                            )}
+                        </>
+                    )}
+                    {session == 'change-password' && (
+                        <>
+                            <Alert
+                                type="warning"
+                                message={intl.formatMessage({ id: 'pages.login.changePassword.tips' })}
+                                style={{ marginBottom: 15 }}
                             />
                             <ProFormText.Password
+                                rules={[{ required: true }, { max: 128 }]}
                                 name="password"
-                                fieldProps={{
-                                    size: 'large',
-                                    prefix: <LockOutlined />,
-                                    autoComplete: 'off',
-                                }}
-                                placeholder={intl.formatMessage({
-                                    id: 'pages.login.password.placeholder',
-                                })}
+                                label={intl.formatMessage({ id: 'page.account.changePassword.field.newPassword' })}
+                                fieldProps={{ autoComplete: 'one-time-code' }}
+                            />
+                            <ProFormText.Password
                                 rules={[
-                                    {
-                                        required: true,
-                                        message: <FormattedMessage id="pages.login.password.required" />,
-                                    },
+                                    { required: true },
+                                    { max: 128 },
+                                    ({ getFieldValue }) => ({
+                                        validator(_, value) {
+                                            if (!value || getFieldValue('password') === value) {
+                                                return Promise.resolve();
+                                            }
+                                            return Promise.reject(new Error('The new password that you entered do not match!'));
+                                        },
+                                    }),
                                 ]}
+                                name="confirmPassword"
+                                label={intl.formatMessage({ id: 'page.account.changePassword.field.confirmPassword' })}
+                                fieldProps={{ autoComplete: 'one-time-code' }}
                             />
                         </>
                     )}
-
-                    {type === 'mobile' && (
+                    {session == 'authenticator' && (
                         <>
+                            <p>
+                                <FormattedMessage id="page.account.authenticator.tips1" />{' '}
+                                <code>{authenticatorInfo?.formatKey}</code>
+                            </p>
+                            <div style={{ marginBottom: 10 }}>
+                                <QRCode value={authenticatorInfo?.uri ?? ''} style={{ margin: '0 auto' }} />
+                            </div>
+                            <p>
+                                <FormattedMessage id="page.account.authenticator.tips2" />
+                            </p>
+
                             <ProFormText
-                                fieldProps={{
-                                    size: 'large',
-                                    prefix: <MobileOutlined />,
-                                    autoComplete: 'off',
-                                }}
-                                name="phoneNumber"
-                                placeholder={intl.formatMessage({
-                                    id: 'pages.login.phoneNumber.placeholder',
-                                })}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: <FormattedMessage id="pages.login.phoneNumber.required" />,
-                                    },
-                                    {
-                                        pattern: /^1\d{10}$/,
-                                        message: <FormattedMessage id="pages.login.phoneNumber.invalid" />,
-                                    },
-                                ]}
-                            />
-                            <ProFormCaptcha
-                                fieldProps={{
-                                    size: 'large',
-                                    prefix: <LockOutlined />,
-                                    autoComplete: 'off',
-                                }}
-                                captchaProps={{
-                                    size: 'large',
-                                }}
-                                placeholder={intl.formatMessage({
-                                    id: 'pages.login.captcha.placeholder',
-                                })}
-                                captchaTextRender={(timing, count) => {
-                                    if (timing) {
-                                        return `${count} ${intl.formatMessage({
-                                            id: 'pages.getCaptchaSecondText',
-                                        })}`;
-                                    }
-                                    return intl.formatMessage({
-                                        id: 'pages.login.phoneLogin.getVerificationCode',
-                                    });
-                                }}
-                                name="captcha"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: <FormattedMessage id="pages.login.captcha.required" />,
-                                    },
-                                ]}
-                                onGetCaptcha={async () => {
-                                    message.info('TODO');
-                                }}
+                                rules={[{ required: true }, { max: 8 }]}
+                                name="code"
+                                fieldProps={{ autoComplete: 'one-time-code', maxLength: 8 }}
                             />
                         </>
                     )}
-                    <div
-                        style={{
-                            marginBottom: 24,
-                        }}
-                    >
-                        <ProFormCheckbox noStyle name="rememberMe">
-                            <FormattedMessage id="pages.login.rememberMe" />
-                        </ProFormCheckbox>
-                        <a
-                            style={{
-                                float: 'right',
-                            }}
-                            onClick={() => {
-                                setForgetPasswordModalOpen(true);
-                            }}
-                        >
-                            <FormattedMessage id="pages.login.forgotPassword" />
-                        </a>
-                    </div>
                 </LoginForm>
             </div>
             <Footer />

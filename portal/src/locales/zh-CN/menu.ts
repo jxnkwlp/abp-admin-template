@@ -46,12 +46,15 @@ export default {
     'menu.editor.mind': '脑图编辑器',
     'menu.editor.koni': '拓扑编辑器',
     //
+    'menu.reset-password': '重置密码',
+    //
     'menu.account': '帐户',
     'menu.account.center': '账户中心',
     'menu.account.settings': '帐户设置',
     'menu.account.change-password': '更改密码',
     'menu.account.logout': '注销',
     'menu.account.security-logs': '安全日志',
+    'menu.account.authenticator': '身份验证器',
     //
     'menu.file-management': '文件管理',
     'menu.management': '系统管理',

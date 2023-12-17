@@ -3,7 +3,7 @@ import { IdentityTwofactoryBehaviour } from '@/services/enums';
 import { API } from '@/services/typings';
 import { enumToOptions } from '@/services/untils';
 import { PageContainer, ProForm, ProFormDigit, ProFormSelect, ProFormSwitch, ProFormText } from '@ant-design/pro-components';
-import { FormattedMessage, useAccess, useIntl } from '@umijs/max';
+import { FormattedMessage, useIntl } from '@umijs/max';
 import { Card, Tabs, message } from 'antd';
 import React, { useState } from 'react';
 
@@ -199,6 +199,7 @@ const Identity: React.FC = () => {
                                             label={
                                                 <FormattedMessage id="page.identityTwofactorSettings.field.authenticatorIssuer" />
                                             }
+                                            width="sm"
                                             rules={[{ required: true }]}
                                         />
                                     </>

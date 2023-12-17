@@ -9,13 +9,13 @@ import type { API } from "./typings";
 import { request } from '@umijs/max';
 
 /**
- * *TODO* POST /api/account/impersonations/{userId}/login 
+ * *TODO* POST /api/account/impersonations/{userId}/link-login 
  **/
-export async function accountImpersonationLogin(
+export async function accountImpersonationLinkLogin(
     userId: string,
     options?: { [key: string]: any }
 ) {
-    return request<any>(`/api/account/impersonations/${userId}/login`, {
+    return request<any>(`/api/account/impersonations/${userId}/link-login`, {
         method: 'POST',
         getResponse: true,
         ...(options || {}),
@@ -23,13 +23,13 @@ export async function accountImpersonationLogin(
 }
 
 /**
- * *TODO* POST /api/account/impersonations/{userId}/link-login 
+ * *TODO* POST /api/account/impersonations/{userId}/login 
  **/
-export async function accountImpersonationLoginLogin(
+export async function accountImpersonationLogin(
     userId: string,
     options?: { [key: string]: any }
 ) {
-    return request<any>(`/api/account/impersonations/${userId}/link-login`, {
+    return request<any>(`/api/account/impersonations/${userId}/login`, {
         method: 'POST',
         getResponse: true,
         ...(options || {}),

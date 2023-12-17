@@ -28,6 +28,8 @@ export default {
     'common.dict.general': 'General',
     'common.dict.common': 'Common',
     'common.dict.details': 'Details',
+    'common.dict.verify': 'Verify',
+    'common.dict.done': 'Done',
     'common.dict.uploadButton': 'Click To Upload',
     'common.http.response.error.requestFailed': 'Request failed',
     'common.http.response.error.networkError1': 'Network Error',

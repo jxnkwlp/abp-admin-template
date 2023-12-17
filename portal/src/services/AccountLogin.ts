@@ -1,7 +1,7 @@
 ﻿/**
  * Generate from url: https://localhost:44361/swagger/v1/swagger.json
  * It is recommended not to modify the document
- * Total count: 13
+ * Total count: 14
  **/
 // @ts-ignore
 /* eslint-disable */
@@ -38,12 +38,12 @@ export async function accountLoginCheckPassword(
 }
 
 /**
- * *TODO* GET /api/account/login/has-authenticator 
+ * *TODO* GET /api/account/authenticator/status 
  **/
 export async function accountLoginHasAuthenticator(
     options?: { [key: string]: any }
 ) {
-    return request<API.AccountHasAuthenticatorResult>(`/api/account/login/has-authenticator`, {
+    return request<API.AccountHasAuthenticatorResult>(`/api/account/authenticator/status`, {
         method: 'GET',
         ...(options || {}),
     });
@@ -82,7 +82,7 @@ export async function accountLoginLoginWithAuthenticatorRecoveryCode(
  **/
 export async function accountLoginLoginWithTfa(
     provider: string,
-    payload: API.AccountLoginWith2FaRequest,
+    payload: API.AccountLoginWithTfaRequest,
     options?: { [key: string]: any }
 ) {
     return request<API.AccountLoginResult>(`/api/account/login/2fa/${provider}`, {
@@ -149,12 +149,12 @@ export async function accountLoginVerifyTfaToken(
 }
 
 /**
- * *TODO* GET /api/account/login/authenticator 
+ * *TODO* GET /api/account/authenticator 
  **/
 export async function getAccountLoginAuthenticatorInfo(
     options?: { [key: string]: any }
 ) {
-    return request<API.AccountAuthenticatorInfo>(`/api/account/login/authenticator`, {
+    return request<API.AccountAuthenticatorInfo>(`/api/account/authenticator`, {
         method: 'GET',
         ...(options || {}),
     });
@@ -168,6 +168,19 @@ export async function getAccountLoginExternalAuthentications(
 ) {
     return request<API.AccountExternalAuthenticationSchameListResult>(`/api/account/login/external-providers`, {
         method: 'GET',
+        ...(options || {}),
+    });
+}
+
+/**
+ * *TODO* GET /api/account/logout 
+ **/
+export async function getAccountLoginLogout(
+    options?: { [key: string]: any }
+) {
+    return request<any>(`/api/account/logout`, {
+        method: 'GET',
+        getResponse: true,
         ...(options || {}),
     });
 }

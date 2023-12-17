@@ -21,6 +21,11 @@ export default [
                 component: './auth/login/index',
                 // component: './auth/login/index2',
             },
+            {
+                name: 'reset-password',
+                path: '/auth/reset-password',
+                component: './auth/reset-password',
+            },
         ],
     },
     {
@@ -136,6 +141,11 @@ export default [
                 name: 'account.center',
                 path: '/account/center',
                 component: './account/index',
+            },
+            {
+                name: 'account.authenticator',
+                path: '/account/authenticator',
+                component: './account/authenticator',
             },
             {
                 name: 'account.change-password',

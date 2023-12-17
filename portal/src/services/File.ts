@@ -9,7 +9,7 @@ import type { API } from "./typings";
 import { request } from '@umijs/max';
 
 /**
- * *TODO* POST /api/file-management/{containerName}
+ * *TODO* POST /api/file-management/{containerName} 
  **/
 export async function createFile(
     containerName: string,
@@ -25,7 +25,7 @@ export async function createFile(
 }
 
 /**
- * *TODO* POST /api/file-management/{containerName}/directory
+ * *TODO* POST /api/file-management/{containerName}/directory 
  **/
 export async function createFileDirectory(
     containerName: string,
@@ -40,10 +40,10 @@ export async function createFileDirectory(
 }
 
 /**
- * *TODO* DELETE /api/file-management/{containerName}/{id}
+ * *TODO* DELETE /api/file-management/{containerName}/{id} 
  **/
 export async function deleteFile(
-    containerName: string, id: string,
+    containerName: string,    id: string,
     options?: { [key: string]: any }
 ) {
     return request<any>(`/api/file-management/${containerName}/${id}`, {
@@ -54,10 +54,10 @@ export async function deleteFile(
 }
 
 /**
- * *TODO* POST /api/file-management/{containerName}/{id}/move
+ * *TODO* POST /api/file-management/{containerName}/{id}/move 
  **/
 export async function fileMove(
-    containerName: string, id: string,
+    containerName: string,    id: string,
     payload: API.FileMoveRequest,
     options?: { [key: string]: any }
 ) {
@@ -69,10 +69,10 @@ export async function fileMove(
 }
 
 /**
- * *TODO* GET /api/file-management/{containerName}/{id}
+ * *TODO* GET /api/file-management/{containerName}/{id} 
  **/
 export async function getFile(
-    containerName: string, id: string,
+    containerName: string,    id: string,
     options?: { [key: string]: any }
 ) {
     return request<API.File>(`/api/file-management/${containerName}/${id}`, {
@@ -82,22 +82,21 @@ export async function getFile(
 }
 
 /**
- * *TODO* GET /api/file-management/{containerName}/{id}/blob
+ * *TODO* GET /api/file-management/{containerName}/{id}/blob 
  **/
 export async function getFileBlob(
-    containerName: string, id: string,
+    containerName: string,    id: string,
     options?: { [key: string]: any }
 ) {
     return request<any>(`/api/file-management/${containerName}/${id}/blob`, {
         method: 'GET',
         getResponse: true,
-        responseType: 'blob',
         ...(options || {}),
     });
 }
 
 /**
- * *TODO* GET /api/file-management/{containerName}
+ * *TODO* GET /api/file-management/{containerName} 
  **/
 export async function getFileList(
     containerName: string,
@@ -119,10 +118,10 @@ export async function getFileList(
 }
 
 /**
- * *TODO* PUT /api/file-management/{containerName}/{id}
+ * *TODO* PUT /api/file-management/{containerName}/{id} 
  **/
 export async function updateFile(
-    containerName: string, id: string,
+    containerName: string,    id: string,
     payload: API.FileUpdate,
     options?: { [key: string]: any }
 ) {

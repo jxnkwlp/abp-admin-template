@@ -1,7 +1,7 @@
 ﻿/**
  * Generate from url: https://localhost:44361/swagger/v1/swagger.json
  * It is recommended not to modify the document
- * Total count: 211
+ * Total count: 233
  **/
 import * as Enum from "./enums";
 
@@ -13,6 +13,22 @@ declare namespace API {
         general: AccountGeneralSettings;
         captcha: AccountCaptchaSettings;
         recaptcha: AccountRecaptchaSettings;
+        externalLogin: AccountExternalLoginSettings;
+    };
+
+    /**
+     * *TODO*
+     **/
+    type AccountAuthenticationLoginResult = {
+        loginProvider?: string | undefined;
+        providerDisplayName?: string | undefined;
+    };
+
+    /**
+     * *TODO*
+     **/
+    type AccountAuthenticationLoginResultListResult = {
+        items?: AccountAuthenticationLoginResult[] | undefined;
     };
 
     /**
@@ -27,6 +43,7 @@ declare namespace API {
      **/
     type AccountAuthenticatorInfo = {
         enabled?: boolean | undefined;
+        identifier?: string | undefined;
         key?: string | undefined;
         formatKey?: string | undefined;
         uri?: string | undefined;
@@ -50,6 +67,21 @@ declare namespace API {
     /**
      * *TODO*
      **/
+    type AccountClaimResult = {
+        claimType?: string | undefined;
+        claimValue?: string | undefined;
+    };
+
+    /**
+     * *TODO*
+     **/
+    type AccountClaimResultListResult = {
+        items?: AccountClaimResult[] | undefined;
+    };
+
+    /**
+     * *TODO*
+     **/
     type AccountExternalAuthenticationSchame = {
         name?: string | undefined;
         displayName?: string | undefined;
@@ -65,9 +97,38 @@ declare namespace API {
     /**
      * *TODO*
      **/
+    type AccountExternalLoginCallback = {
+        returnUrl?: string | undefined;
+        remoteError?: string | undefined;
+    };
+
+    /**
+     * *TODO*
+     **/
+    type AccountExternalLoginResult = {
+        result: Enum.AccountLoginResultType;
+        description?: string | undefined;
+        redirectUrl?: string | undefined;
+    };
+
+    /**
+     * *TODO*
+     **/
+    type AccountExternalLoginSettings = {
+        autoCreateUser?: boolean | undefined;
+        bypassTwofactory?: boolean | undefined;
+    };
+
+    /**
+     * *TODO*
+     **/
     type AccountGeneralSettings = {
         isSelfRegistrationEnabled?: boolean | undefined;
         enableLocalLogin?: boolean | undefined;
+        enableResetPassword?: boolean | undefined;
+        enableChangePasswordOnProfile?: boolean | undefined;
+        enableChangePasswordOnLogin?: boolean | undefined;
+        enableAuthenticatorSetupOnLogin?: boolean | undefined;
     };
 
     /**
@@ -145,17 +206,71 @@ declare namespace API {
     /**
      * *TODO*
      **/
-    type AccountLoginWith2FaRequest = {
-        code: string;
-        rememberMe?: boolean | undefined;
-        rememberMachine?: boolean | undefined;
+    type AccountLoginWithAuthenticatorRecoveryCodeRequest = {
+        recoveryCode: string;
     };
 
     /**
      * *TODO*
      **/
-    type AccountLoginWithAuthenticatorRecoveryCodeRequest = {
-        recoveryCode: string;
+    type AccountLoginWithTfaRequest = {
+        code: string;
+        rememberMe?: boolean | undefined;
+    };
+
+    /**
+     * *TODO*
+     **/
+    type AccountPreferredProvider = {
+        provider?: string | undefined;
+    };
+
+    /**
+     * *TODO*
+     **/
+    type AccountProfile = {
+        extraProperties?: any | undefined;
+        userName?: string | undefined;
+        email?: string | undefined;
+        name?: string | undefined;
+        surname?: string | undefined;
+        phoneNumber?: string | undefined;
+        isExternal?: boolean | undefined;
+        hasPassword?: boolean | undefined;
+        concurrencyStamp?: string | undefined;
+        emailConfirmed?: boolean | undefined;
+        phoneNumberConfirmed?: boolean | undefined;
+        twoFactorEnabled?: boolean | undefined;
+    };
+
+    /**
+     * *TODO*
+     **/
+    type AccountProfileChangeEmail = {
+        token: string;
+        email: string;
+    };
+
+    /**
+     * *TODO*
+     **/
+    type AccountProfileChangeEmailToken = {
+        email: string;
+    };
+
+    /**
+     * *TODO*
+     **/
+    type AccountProfileChangePhoneNumber = {
+        token: string;
+        phoneNumber: string;
+    };
+
+    /**
+     * *TODO*
+     **/
+    type AccountProfileChangePhoneNumberToken = {
+        phoneNumber: string;
     };
 
     /**
@@ -182,6 +297,7 @@ declare namespace API {
     type AccountTfa = {
         enabled?: boolean | undefined;
         isMachineRemembered?: boolean | undefined;
+        providers?: string[] | undefined;
     };
 
     /**
@@ -195,16 +311,23 @@ declare namespace API {
     /**
      * *TODO*
      **/
-    type AccountTfaVerifyTokenRequest = {
-        token: string;
+    type AccountUnlink = {
+        userId: string;
+        tenantId: string;
     };
 
     /**
      * *TODO*
      **/
-    type AccountUnlink = {
-        userId: string;
-        tenantId: string;
+    type AccountUpdatePreferredProvider = {
+        provider: string;
+    };
+
+    /**
+     * *TODO*
+     **/
+    type AccountVerifyTokenRequest = {
+        token: string;
     };
 
     /**
@@ -1452,6 +1575,7 @@ declare namespace API {
         isRememberBrowserEnabled?: boolean | undefined;
         twoFactorBehaviour: Enum.IdentityTwofactoryBehaviour;
         usersCanChange?: boolean | undefined;
+        authenticatorEnabled?: boolean | undefined;
         authenticatorIssuer?: string | undefined;
         twoFactorBehaviourDescription?: string | undefined;
     };
@@ -1487,6 +1611,69 @@ declare namespace API {
     /**
      * *TODO*
      **/
+    type IdentityUserBatchClearPassword = {
+        userIds: string[];
+    };
+
+    /**
+     * *TODO*
+     **/
+    type IdentityUserBatchInput = {
+        userIds: string[];
+    };
+
+    /**
+     * *TODO*
+     **/
+    type IdentityUserBatchLock = {
+        userIds: string[];
+        endTime: string;
+    };
+
+    /**
+     * *TODO*
+     **/
+    type IdentityUserBatchUnlock = {
+        userIds: string[];
+    };
+
+    /**
+     * *TODO*
+     **/
+    type IdentityUserBatchUpdateConfirmed = {
+        userIds: string[];
+        confirmed?: boolean | undefined;
+    };
+
+    /**
+     * *TODO*
+     **/
+    type IdentityUserBatchUpdateOrganizationUnits = {
+        userIds: string[];
+        override?: boolean | undefined;
+        organizationUnitIds?: string[] | undefined;
+    };
+
+    /**
+     * *TODO*
+     **/
+    type IdentityUserBatchUpdateRoles = {
+        userIds: string[];
+        override?: boolean | undefined;
+        roleNames?: string[] | undefined;
+    };
+
+    /**
+     * *TODO*
+     **/
+    type IdentityUserBatchUpdateTwoFactorEnabled = {
+        userIds: string[];
+        enabled?: boolean | undefined;
+    };
+
+    /**
+     * *TODO*
+     **/
     type IdentityUserClaim = {
         claimType: string;
         claimValue: string;
@@ -1512,6 +1699,8 @@ declare namespace API {
         isActive?: boolean | undefined;
         lockoutEnabled?: boolean | undefined;
         roleNames?: string[] | undefined;
+        emailConfirmed?: boolean | undefined;
+        phoneNumberConfirmed?: boolean | undefined;
         shouldChangePasswordOnNextLogin?: boolean | undefined;
         organizationUnitIds?: string[] | undefined;
         password?: string | undefined;
@@ -1596,6 +1785,8 @@ declare namespace API {
         isActive?: boolean | undefined;
         lockoutEnabled?: boolean | undefined;
         roleNames?: string[] | undefined;
+        emailConfirmed?: boolean | undefined;
+        phoneNumberConfirmed?: boolean | undefined;
         shouldChangePasswordOnNextLogin?: boolean | undefined;
         organizationUnitIds?: string[] | undefined;
         password?: string | undefined;

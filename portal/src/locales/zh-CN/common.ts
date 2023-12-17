@@ -28,6 +28,8 @@ export default {
     'common.dict.general': '基本',
     'common.dict.common': '通用',
     'common.dict.details': '详细信息',
+    'common.dict.verify': '验证',
+    'common.dict.done': '完成',
     'common.dict.uploadButton': '点击上传',
     'common.http.response.error.requestFailed': '请求失败',
     'common.http.response.error.networkError1': '网络错误',

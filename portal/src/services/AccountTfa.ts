@@ -1,7 +1,7 @@
 ﻿/**
  * Generate from url: https://localhost:44361/swagger/v1/swagger.json
  * It is recommended not to modify the document
- * Total count: 10
+ * Total count: 16
  **/
 // @ts-ignore
 /* eslint-disable */
@@ -16,6 +16,71 @@ export async function accountTfaDisable(
 ) {
     return request<any>(`/api/account/2fa`, {
         method: 'DELETE',
+        getResponse: true,
+        ...(options || {}),
+    });
+}
+
+/**
+ * *TODO* DELETE /api/account/2fa/providers/email 
+ **/
+export async function accountTfaDisabledEmailTokenProvider(
+    options?: { [key: string]: any }
+) {
+    return request<any>(`/api/account/2fa/providers/email`, {
+        method: 'DELETE',
+        getResponse: true,
+        ...(options || {}),
+    });
+}
+
+/**
+ * *TODO* DELETE /api/account/2fa/providers/phone-number 
+ **/
+export async function accountTfaDisabledPhoneNumberTokenProvider(
+    options?: { [key: string]: any }
+) {
+    return request<any>(`/api/account/2fa/providers/phone-number`, {
+        method: 'DELETE',
+        getResponse: true,
+        ...(options || {}),
+    });
+}
+
+/**
+ * *TODO* PUT /api/account/2fa 
+ **/
+export async function accountTfaEnabled(
+    options?: { [key: string]: any }
+) {
+    return request<any>(`/api/account/2fa`, {
+        method: 'PUT',
+        getResponse: true,
+        ...(options || {}),
+    });
+}
+
+/**
+ * *TODO* PUT /api/account/2fa/providers/email 
+ **/
+export async function accountTfaEnabledEmailTokenProvider(
+    options?: { [key: string]: any }
+) {
+    return request<any>(`/api/account/2fa/providers/email`, {
+        method: 'PUT',
+        getResponse: true,
+        ...(options || {}),
+    });
+}
+
+/**
+ * *TODO* PUT /api/account/2fa/providers/phone-number 
+ **/
+export async function accountTfaEnabledPhoneNumberTokenProvider(
+    options?: { [key: string]: any }
+) {
+    return request<any>(`/api/account/2fa/providers/phone-number`, {
+        method: 'PUT',
         getResponse: true,
         ...(options || {}),
     });
@@ -47,43 +112,30 @@ export async function accountTfaGenerateAuthenticatorRecoveryCodes(
 }
 
 /**
- * *TODO* PUT /api/account/2fa/authenticator/reset 
+ * *TODO* DELETE /api/account/2fa/authenticator 
  **/
-export async function accountTfaResetAuthenticator(
+export async function accountTfaRemoveAuthenticator(
+    params: {
+        code: string
+    },
+    options?: { [key: string]: any }
+) {
+    return request<any>(`/api/account/2fa/authenticator`, {
+        method: 'DELETE',
+        params: params,
+        getResponse: true,
+        ...(options || {}),
+    });
+}
+
+/**
+ * *TODO* POST /api/account/2fa/authenticator/verify 
+ **/
+export async function accountTfaVerifyAuthenticatorToken(
     payload: API.AccountAuthenticatorCodeVerifyRequest,
     options?: { [key: string]: any }
 ) {
-    return request<any>(`/api/account/2fa/authenticator/reset`, {
-        method: 'PUT',
-        data: payload,
-        getResponse: true,
-        ...(options || {}),
-    });
-}
-
-/**
- * *TODO* POST /api/account/2fa/{provider}/token 
- **/
-export async function accountTfaSendToken(
-    provider: string,
-    options?: { [key: string]: any }
-) {
-    return request<any>(`/api/account/2fa/${provider}/token`, {
-        method: 'POST',
-        getResponse: true,
-        ...(options || {}),
-    });
-}
-
-/**
- * *TODO* POST /api/account/2fa/{provider}/verify 
- **/
-export async function accountTfaVerifyToken(
-    provider: string,
-    payload: API.AccountTfaVerifyTokenRequest,
-    options?: { [key: string]: any }
-) {
-    return request<API.AccountVerifyTokenResult>(`/api/account/2fa/${provider}/verify`, {
+    return request<API.AccountVerifyTokenResult>(`/api/account/2fa/authenticator/verify`, {
         method: 'POST',
         data: payload,
         ...(options || {}),
@@ -115,6 +167,18 @@ export async function getAccountTfaAuthenticator(
 }
 
 /**
+ * *TODO* GET /api/account/2fa/preferred-provider 
+ **/
+export async function getAccountTfaPreferredProvider(
+    options?: { [key: string]: any }
+) {
+    return request<API.AccountPreferredProvider>(`/api/account/2fa/preferred-provider`, {
+        method: 'GET',
+        ...(options || {}),
+    });
+}
+
+/**
  * *TODO* GET /api/account/2fa/providers 
  **/
 export async function getAccountTfaProviders(
@@ -136,6 +200,21 @@ export async function updateAccountTfaAuthenticator(
     return request<API.AccountAuthenticatorRecoveryCodesResult>(`/api/account/2fa/authenticator`, {
         method: 'PUT',
         data: payload,
+        ...(options || {}),
+    });
+}
+
+/**
+ * *TODO* PUT /api/account/2fa/preferred-provider 
+ **/
+export async function updateAccountTfaPreferredProvider(
+    payload: API.AccountUpdatePreferredProvider,
+    options?: { [key: string]: any }
+) {
+    return request<any>(`/api/account/2fa/preferred-provider`, {
+        method: 'PUT',
+        data: payload,
+        getResponse: true,
         ...(options || {}),
     });
 }

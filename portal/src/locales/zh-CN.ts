@@ -6,6 +6,7 @@ import pages from './zh-CN/pages';
 import pwa from './zh-CN/pwa';
 import settingDrawer from './zh-CN/settingDrawer';
 import settings from './zh-CN/settings';
+import login from './zh-CN/pages.login';
 import identityrole from './zh-CN/pages.identityrole';
 import identityuser from './zh-CN/pages.identityuser';
 import organizationunit from './zh-CN/pages.organizationunit';
@@ -38,6 +39,7 @@ export default {
     ...pwa,
     ...component,
     ...common,
+    ...login,
     ...identityrole,
     ...identityuser,
     ...organizationunit,

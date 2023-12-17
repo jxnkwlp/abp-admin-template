@@ -60,12 +60,12 @@ export const requestConfig: RequestConfig = {
         (response) => {
             const { config, status, statusText, data, request } = response;
             if (status >= 300) {
-                if (data) {
+                if (request) {
                     const errorData = data as unknown as GlobErrorType;
                     const msg = errorData.error?.message;
 
                     if (status == 401) {
-                        message.error(msg ?? 'Authentication failed, please log in again');
+                        message.error('Authentication failed, please log in again');
                     } else if (status == 400 || status == 403) {
                         message.error(msg ?? 'Your request is not valid!');
                     } else if (status >= 500) {
@@ -73,11 +73,7 @@ export const requestConfig: RequestConfig = {
                     } else {
                         message.error(msg ?? 'An error occurred, please contact the administrator');
                     }
-                } else if (request) {
-                    // 请求已经成功发起，但没有收到响应
-                    // \`error.request\` 在浏览器中是 XMLHttpRequest 的实例，
-                    // 而在node.js中是 http.ClientRequest 的实例
-                    message.error('None response! Please retry.');
+                    // message.error('None response! Please retry.');
                 } else {
                     // 发送请求时出了点问题
                     message.error('Request error, please retry.');

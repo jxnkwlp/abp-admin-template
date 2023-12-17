@@ -1,13 +1,12 @@
+import { getAccountAdminSettings, updateAccountAdminSettings } from '@/services/AccountAdminSettings';
 import { API } from '@/services/typings';
-import { PageContainer, ProForm, ProFormSwitch, ProFormDigit, ProFormText, ProFormSelect } from '@ant-design/pro-components';
+import { PageContainer, ProForm, ProFormSwitch } from '@ant-design/pro-components';
+import { FormattedMessage, useAccess, useIntl } from '@umijs/max';
 import { Card, Tabs, message } from 'antd';
 import React, { useState } from 'react';
-import { FormattedMessage, useAccess, useIntl } from '@umijs/max';
-import { getAccountAdminSettings, updateAccountAdminSettings } from '@/services/AccountAdminSettings';
 
 const Account: React.FC = () => {
     const intl = useIntl();
-    const access = useAccess();
 
     const [data, setData] = useState<API.AccountAdminSettings>();
 

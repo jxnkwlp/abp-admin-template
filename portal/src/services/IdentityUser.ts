@@ -1,12 +1,102 @@
 ﻿/**
  * Generate from url: https://localhost:44361/swagger/v1/swagger.json
  * It is recommended not to modify the document
- * Total count: 26
+ * Total count: 35
  **/
 // @ts-ignore
 /* eslint-disable */
 import type { API } from "./typings";
 import { request } from '@umijs/max';
+
+/**
+ * *TODO* PUT /api/identity/users/batch/change-password-on-next-login 
+ **/
+export async function batchUpdateIdentityUserChangePasswordOnNextLogin(
+    payload: API.IdentityUserBatchInput,
+    options?: { [key: string]: any }
+) {
+    return request<any>(`/api/identity/users/batch/change-password-on-next-login`, {
+        method: 'PUT',
+        data: payload,
+        getResponse: true,
+        ...(options || {}),
+    });
+}
+
+/**
+ * *TODO* PUT /api/identity/users/batch/email-confirmed 
+ **/
+export async function batchUpdateIdentityUserEmailConfirmed(
+    payload: API.IdentityUserBatchUpdateConfirmed,
+    options?: { [key: string]: any }
+) {
+    return request<any>(`/api/identity/users/batch/email-confirmed`, {
+        method: 'PUT',
+        data: payload,
+        getResponse: true,
+        ...(options || {}),
+    });
+}
+
+/**
+ * *TODO* PUT /api/identity/users/batch/organization-units 
+ **/
+export async function batchUpdateIdentityUserOrganizationUnits(
+    payload: API.IdentityUserBatchUpdateOrganizationUnits,
+    options?: { [key: string]: any }
+) {
+    return request<any>(`/api/identity/users/batch/organization-units`, {
+        method: 'PUT',
+        data: payload,
+        getResponse: true,
+        ...(options || {}),
+    });
+}
+
+/**
+ * *TODO* PUT /api/identity/users/batch/phonenumber-confirmed 
+ **/
+export async function batchUpdateIdentityUserPhoneNumberConfirmed(
+    payload: API.IdentityUserBatchUpdateConfirmed,
+    options?: { [key: string]: any }
+) {
+    return request<any>(`/api/identity/users/batch/phonenumber-confirmed`, {
+        method: 'PUT',
+        data: payload,
+        getResponse: true,
+        ...(options || {}),
+    });
+}
+
+/**
+ * *TODO* PUT /api/identity/users/batch/roles 
+ **/
+export async function batchUpdateIdentityUserRoles(
+    payload: API.IdentityUserBatchUpdateRoles,
+    options?: { [key: string]: any }
+) {
+    return request<any>(`/api/identity/users/batch/roles`, {
+        method: 'PUT',
+        data: payload,
+        getResponse: true,
+        ...(options || {}),
+    });
+}
+
+/**
+ * *TODO* PUT /api/identity/users/batch/two-factor-enabled 
+ **/
+export async function batchUpdateIdentityUserTwoFactorEnabled(
+    payload: API.IdentityUserBatchUpdateTwoFactorEnabled,
+    options?: { [key: string]: any }
+) {
+    return request<any>(`/api/identity/users/batch/two-factor-enabled`, {
+        method: 'PUT',
+        data: payload,
+        getResponse: true,
+        ...(options || {}),
+    });
+}
 
 /**
  * *TODO* POST /api/identity/users 
@@ -173,6 +263,51 @@ export async function getIdentityUserTwoFactorEnabled(
 ) {
     return request<API.IdentityUserTwoFactorEnabled>(`/api/identity/users/${id}/two-factor-enabled`, {
         method: 'GET',
+        ...(options || {}),
+    });
+}
+
+/**
+ * *TODO* PUT /api/identity/users/batch/clear-password 
+ **/
+export async function identityUserBatchClearPassword(
+    payload: API.IdentityUserBatchClearPassword,
+    options?: { [key: string]: any }
+) {
+    return request<any>(`/api/identity/users/batch/clear-password`, {
+        method: 'PUT',
+        data: payload,
+        getResponse: true,
+        ...(options || {}),
+    });
+}
+
+/**
+ * *TODO* PUT /api/identity/users/batch/lock 
+ **/
+export async function identityUserBatchLock(
+    payload: API.IdentityUserBatchLock,
+    options?: { [key: string]: any }
+) {
+    return request<any>(`/api/identity/users/batch/lock`, {
+        method: 'PUT',
+        data: payload,
+        getResponse: true,
+        ...(options || {}),
+    });
+}
+
+/**
+ * *TODO* PUT /api/identity/users/batch/unlock 
+ **/
+export async function identityUserBatchUnlock(
+    payload: API.IdentityUserBatchUnlock,
+    options?: { [key: string]: any }
+) {
+    return request<any>(`/api/identity/users/batch/unlock`, {
+        method: 'PUT',
+        data: payload,
+        getResponse: true,
         ...(options || {}),
     });
 }

@@ -1,7 +1,7 @@
 ﻿/**
  * Generate from url: https://localhost:44361/swagger/v1/swagger.json
  * It is recommended not to modify the document
- * Total count: 8
+ * Total count: 10
  **/
 // @ts-ignore
 /* eslint-disable */
@@ -27,6 +27,18 @@ export async function getAccountAdminSettingsCaptcha(
     options?: { [key: string]: any }
 ) {
     return request<API.AccountCaptchaSettings>(`/api/account/admin/settings/captcha`, {
+        method: 'GET',
+        ...(options || {}),
+    });
+}
+
+/**
+ * *TODO* GET /api/account/admin/settings/external-login 
+ **/
+export async function getAccountAdminSettingsExternalLogin(
+    options?: { [key: string]: any }
+) {
+    return request<API.AccountExternalLoginSettings>(`/api/account/admin/settings/external-login`, {
         method: 'GET',
         ...(options || {}),
     });
@@ -79,6 +91,21 @@ export async function updateAccountAdminSettingsCaptcha(
     options?: { [key: string]: any }
 ) {
     return request<any>(`/api/account/admin/settings/captcha`, {
+        method: 'PUT',
+        data: payload,
+        getResponse: true,
+        ...(options || {}),
+    });
+}
+
+/**
+ * *TODO* PUT /api/account/admin/settings/external-login 
+ **/
+export async function updateAccountAdminSettingsExternalLogin(
+    payload: API.AccountExternalLoginSettings,
+    options?: { [key: string]: any }
+) {
+    return request<any>(`/api/account/admin/settings/external-login`, {
         method: 'PUT',
         data: payload,
         getResponse: true,

@@ -103,11 +103,6 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
                       label: <FormattedMessage id="menu.account.center" />,
                   },
                   {
-                      key: 'change-password',
-                      icon: <LockOutlined />,
-                      label: <FormattedMessage id="menu.account.change-password" />,
-                  },
-                  {
                       type: 'divider' as const,
                   },
               ]

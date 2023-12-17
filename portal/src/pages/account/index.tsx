@@ -1,9 +1,13 @@
 import { getAccountProfile, updateAccountProfile } from '@/services/AccountProfile';
 import { API } from '@/services/typings';
 import { PageContainer, ProForm, ProFormText } from '@ant-design/pro-components';
-import { history, useIntl, useLocation } from '@umijs/max';
-import { Card, message } from 'antd';
-import React, { useState } from 'react';
+import { FormattedMessage, history, useIntl, useLocation } from '@umijs/max';
+import { Card, Col, Menu, Row, message } from 'antd';
+import React, { useEffect, useState } from 'react';
+import Profile from './profile';
+import SecurityLog from './security-logs';
+import ChangePassword from './change-password';
+import Mfa from './mfa';
 
 export const AccountTabList = [
     {
@@ -26,64 +30,59 @@ export const Index: React.FC = () => {
     const location = useLocation();
     const intl = useIntl();
 
-    const [data, setData] = useState<API.Profile>();
+    const [menu, setMenu] = useState('profile');
+
+    const handleChangeMenu = (key: string) => {
+        setMenu(key);
+        history.push('./center#' + key);
+    };
+
+    useEffect(() => {
+        const hash = location.hash;
+
+        if (hash && hash.length > 2) {
+            setMenu(hash.substring(1));
+        }
+    }, []);
 
     return (
         <PageContainer>
-            <Card
-                tabList={AccountTabList}
-                activeTabKey={location.pathname.replace('/account/', '')}
-                onTabChange={(key) => history.push('/account/' + key)}
-            >
-                <ProForm
-                    layout="horizontal"
-                    labelWrap
-                    labelCol={{ span: 2 }}
-                    request={async () => {
-                        const result = await getAccountProfile();
-                        setData(result);
-                        return result ?? {};
-                    }}
-                    onFinish={async (values) => {
-                        const result = await updateAccountProfile({ ...data, ...values });
-                        if (result) {
-                            setData(result);
-                            message.success(intl.formatMessage({ id: 'common.dict.modified.success' }));
-                        }
-                    }}
-                >
-                    <ProFormText
-                        disabled
-                        rules={[{ required: true }, { max: 128 }]}
-                        name="userName"
-                        label={intl.formatMessage({ id: 'page.profile.field.userName' })}
-                        width={'md'}
-                    />
-                    <ProFormText
-                        rules={[{ required: true }, { max: 128 }, { type: 'email' }]}
-                        name="email"
-                        label={intl.formatMessage({ id: 'page.profile.field.email' })}
-                        width={'md'}
-                    />
-                    <ProFormText
-                        rules={[{ required: true }, { max: 32 }]}
-                        name="name"
-                        label={intl.formatMessage({ id: 'page.profile.field.name' })}
-                        width={'md'}
-                    />
-                    <ProFormText
-                        rules={[{ required: false }, { max: 32 }]}
-                        name="surname"
-                        label={intl.formatMessage({ id: 'page.profile.field.surname' })}
-                        width={'md'}
-                    />
-                    <ProFormText
-                        rules={[{ required: false }, { max: 32 }]}
-                        name="phoneNumber"
-                        label={intl.formatMessage({ id: 'page.profile.field.phoneNumber' })}
-                        width={'md'}
-                    />
-                </ProForm>
+            <Card>
+                <Row gutter={24}>
+                    <Col span={6}>
+                        <Menu
+                            mode="vertical"
+                            items={[
+                                {
+                                    key: 'profile',
+                                    label: <FormattedMessage id="page.account.profile" />,
+                                },
+                                {
+                                    key: 'mfa',
+                                    label: <FormattedMessage id="page.account.mfa" />,
+                                },
+                                {
+                                    key: 'change-password',
+                                    label: <FormattedMessage id="page.account.change-password" />,
+                                },
+                                {
+                                    key: 'security-logs',
+                                    label: <FormattedMessage id="page.account.security-logs" />,
+                                },
+                            ]}
+                            onClick={(e) => {
+                                handleChangeMenu(e.key);
+                            }}
+                            selectedKeys={[menu]}
+                        ></Menu>
+                    </Col>
+                    <Col span={18}>
+                        {menu == 'profile' && <Profile />}
+                        {menu == 'mfa' && <Mfa />}
+                        {menu == 'change-password' && <ChangePassword />}
+                        {menu == 'security-logs' && <SecurityLog />}
+                    </Col>
+                </Row>
             </Card>
         </PageContainer>
     );

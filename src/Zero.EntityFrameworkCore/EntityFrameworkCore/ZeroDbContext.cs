@@ -2,6 +2,7 @@
 using Passingwind.Abp.DictionaryManagement.EntityFrameworkCore;
 using Passingwind.Abp.DynamicPermissionManagement.EntityFrameworkCore;
 using Passingwind.Abp.FileManagement.EntityFrameworkCore;
+using Passingwind.Abp.Identity.EntityFrameworkCore;
 using Passingwind.Abp.IdentityClientManagement.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -66,25 +67,26 @@ public class ZeroDbContext :
     {
     }
 
-    protected override void OnModelCreating(ModelBuilder builder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(builder);
+        base.OnModelCreating(modelBuilder);
 
         /* Include modules to your migration db context */
 
-        builder.ConfigurePermissionManagement();
-        builder.ConfigureSettingManagement();
-        builder.ConfigureBackgroundJobs();
-        builder.ConfigureAuditLogging();
-        builder.ConfigureIdentity();
-        builder.ConfigureOpenIddict();
-        builder.ConfigureFeatureManagement();
-        builder.ConfigureTenantManagement();
+        modelBuilder.ConfigurePermissionManagement();
+        modelBuilder.ConfigureSettingManagement();
+        modelBuilder.ConfigureBackgroundJobs();
+        modelBuilder.ConfigureAuditLogging();
+        modelBuilder.ConfigureIdentity();
+        modelBuilder.ConfigureIdentityV2();
+        modelBuilder.ConfigureOpenIddict();
+        modelBuilder.ConfigureFeatureManagement();
+        modelBuilder.ConfigureTenantManagement();
 
-        builder.ConfigureDictionaryManagement();
-        builder.ConfigureDynamicPermissionManagement();
-        builder.ConfigureFileManagement();
-        builder.ConfigureIdentityClientManagement();
+        modelBuilder.ConfigureDictionaryManagement();
+        modelBuilder.ConfigureDynamicPermissionManagement();
+        modelBuilder.ConfigureFileManagement();
+        modelBuilder.ConfigureIdentityClientManagement();
 
         /* Configure your own tables/entities inside here */
 
