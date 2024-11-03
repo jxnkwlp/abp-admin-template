@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\common.props" />
+  <Import Project="..\..\test.props" />
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>$(TFVersion)</TargetFramework>
     <Nullable>enable</Nullable>
     <OutputType>Exe</OutputType>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
@@ -18,7 +18,7 @@
     <PackageReference Include="HtmlAgilityPack" Version="1.11.42" />
     <ProjectReference Include="..\Zero.Application.Tests\Zero.Application.Tests.csproj" />
     <ProjectReference Include="..\..\src\Zero.Web\Zero.Web.csproj" />
-    <PackageReference Include="Volo.Abp.AspNetCore.TestBase" Version="7.3.3" />
+    <PackageReference Include="Volo.Abp.AspNetCore.TestBase" Version="$(AbpVersion)" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Zero.Migrations;
 
 /// <inheritdoc />
-public partial class AddDynamicPermissionManagement : Migration
+public partial class AddPermissionManagement : Migration
 {
     /// <inheritdoc />
     protected override void Up(MigrationBuilder migrationBuilder)

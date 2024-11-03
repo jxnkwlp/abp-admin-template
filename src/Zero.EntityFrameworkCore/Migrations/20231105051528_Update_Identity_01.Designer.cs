@@ -173,7 +173,7 @@ namespace Zero.Migrations
                     b.ToTable("AppDictionaryItems", (string)null);
                 });
 
-            modelBuilder.Entity("Passingwind.Abp.DynamicPermissionManagement.Permissions.DynamicPermissionDefinition", b =>
+            modelBuilder.Entity("Passingwind.Abp.PermissionManagement.Permissions.DynamicPermissionDefinition", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -240,7 +240,7 @@ namespace Zero.Migrations
                     b.ToTable("AbpDynamicPermissions", (string)null);
                 });
 
-            modelBuilder.Entity("Passingwind.Abp.DynamicPermissionManagement.Permissions.DynamicPermissionGroupDefinition", b =>
+            modelBuilder.Entity("Passingwind.Abp.PermissionManagement.Permissions.DynamicPermissionGroupDefinition", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -582,7 +582,7 @@ namespace Zero.Migrations
                     b.ToTable("AbpUserTwoFactors", (string)null);
                 });
 
-            modelBuilder.Entity("Passingwind.Abp.IdentityClientManagement.IdentityClients.IdentityClient", b =>
+            modelBuilder.Entity("Passingwind.Abp.IdentityClient.IdentityClients.IdentityClient", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -675,7 +675,7 @@ namespace Zero.Migrations
                     b.ToTable("AppIdentityClients", (string)null);
                 });
 
-            modelBuilder.Entity("Passingwind.Abp.IdentityClientManagement.IdentityClients.IdentityClientClaimMap", b =>
+            modelBuilder.Entity("Passingwind.Abp.IdentityClient.IdentityClients.IdentityClientClaimMap", b =>
                 {
                     b.Property<Guid>("IdentityClientId")
                         .HasColumnType("uniqueidentifier");
@@ -700,7 +700,7 @@ namespace Zero.Migrations
                     b.ToTable("AppIdentityClientClaimMaps", (string)null);
                 });
 
-            modelBuilder.Entity("Passingwind.Abp.IdentityClientManagement.IdentityClients.IdentityClientConfiguration", b =>
+            modelBuilder.Entity("Passingwind.Abp.IdentityClient.IdentityClients.IdentityClientConfiguration", b =>
                 {
                     b.Property<Guid>("IdentityClientId")
                         .HasColumnType("uniqueidentifier");
@@ -2373,18 +2373,18 @@ namespace Zero.Migrations
                     b.ToTable("AbpTenantConnectionStrings", (string)null);
                 });
 
-            modelBuilder.Entity("Passingwind.Abp.IdentityClientManagement.IdentityClients.IdentityClientClaimMap", b =>
+            modelBuilder.Entity("Passingwind.Abp.IdentityClient.IdentityClients.IdentityClientClaimMap", b =>
                 {
-                    b.HasOne("Passingwind.Abp.IdentityClientManagement.IdentityClients.IdentityClient", null)
+                    b.HasOne("Passingwind.Abp.IdentityClient.IdentityClients.IdentityClient", null)
                         .WithMany("ClaimMaps")
                         .HasForeignKey("IdentityClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Passingwind.Abp.IdentityClientManagement.IdentityClients.IdentityClientConfiguration", b =>
+            modelBuilder.Entity("Passingwind.Abp.IdentityClient.IdentityClients.IdentityClientConfiguration", b =>
                 {
-                    b.HasOne("Passingwind.Abp.IdentityClientManagement.IdentityClients.IdentityClient", null)
+                    b.HasOne("Passingwind.Abp.IdentityClient.IdentityClients.IdentityClient", null)
                         .WithMany("Configurations")
                         .HasForeignKey("IdentityClientId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2533,7 +2533,7 @@ namespace Zero.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Passingwind.Abp.IdentityClientManagement.IdentityClients.IdentityClient", b =>
+            modelBuilder.Entity("Passingwind.Abp.IdentityClient.IdentityClients.IdentityClient", b =>
                 {
                     b.Navigation("ClaimMaps");
 

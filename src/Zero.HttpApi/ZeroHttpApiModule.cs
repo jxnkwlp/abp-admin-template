@@ -1,10 +1,10 @@
 ﻿using Localization.Resources.AbpUi;
 using Passingwind.Abp.Account;
 using Passingwind.Abp.DictionaryManagement;
-using Passingwind.Abp.DynamicPermissionManagement;
+using Passingwind.Abp.PermissionManagement;
 using Passingwind.Abp.FileManagement;
 using Passingwind.Abp.Identity;
-using Passingwind.Abp.IdentityClientManagement;
+using Passingwind.Abp.IdentityClient;
 using SharpAbp.Abp.AuditLogging;
 using SharpAbp.Abp.OpenIddict;
 using Volo.Abp.FeatureManagement;
@@ -29,8 +29,8 @@ namespace Zero;
 [DependsOn(typeof(AuditLoggingHttpApiModule))]
 [DependsOn(typeof(OpenIddictHttpApiModule))]
 [DependsOn(typeof(FileManagementHttpApiModule))]
-[DependsOn(typeof(IdentityClientManagementHttpApiModule))]
-[DependsOn(typeof(DynamicPermissionManagementHttpApiModule))]
+[DependsOn(typeof(IdentityClientHttpApiModule))]
+[DependsOn(typeof(PermissionManagementHttpApiModule))]
 [DependsOn(typeof(DictionaryManagementHttpApiModule))]
 public class ZeroHttpApiModule : AbpModule
 {

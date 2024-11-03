@@ -4,7 +4,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>$(TFVersion)</TargetFramework>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 

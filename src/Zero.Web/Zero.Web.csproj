@@ -3,7 +3,7 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>$(TFVersion)</TargetFramework>
     <Nullable>enable</Nullable>
     <RootNamespace>Zero.Web</RootNamespace>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
@@ -73,7 +73,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Passingwind.Abp.IdentityClientManagement.AspNetCore" Version="$(IdentityClientManagementVersion)" />
+    <PackageReference Include="Passingwind.Abp.IdentityClient.AspNetCore" Version="$(IdentityClientVersion)" />
     <PackageReference Include="Passingwind.Abp.Identity.AspNetCore" Version="$(IdentityVersion)" />
   </ItemGroup>
 

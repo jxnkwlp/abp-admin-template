@@ -1,0 +1,12 @@
+﻿<Project>
+  
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Version>0.1.0</Version> 
+    <TFVersion>net8.0</TFVersion>
+    <CoreVersion>8.0.10</CoreVersion>
+    <MicrosoftCoreVersion>8.0.*</MicrosoftCoreVersion>
+    <AbpVersion>8.3.0</AbpVersion>
+  </PropertyGroup>
+
+</Project>

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Zero.Migrations;
 
 /// <inheritdoc />
-public partial class AddIdentityClientManagement : Migration
+public partial class AddIdentityClient : Migration
 {
     /// <inheritdoc />
     protected override void Up(MigrationBuilder migrationBuilder)

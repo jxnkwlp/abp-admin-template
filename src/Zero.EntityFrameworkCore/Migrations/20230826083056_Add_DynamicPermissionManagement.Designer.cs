@@ -13,8 +13,8 @@ using Zero.EntityFrameworkCore;
 namespace Zero.Migrations
 {
     [DbContext(typeof(ZeroDbContext))]
-    [Migration("20230826083056_Add_DynamicPermissionManagement")]
-    partial class AddDynamicPermissionManagement
+    [Migration("20230826083056_Add_PermissionManagement")]
+    partial class AddPermissionManagement
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -173,7 +173,7 @@ namespace Zero.Migrations
                     b.ToTable("AppDictionaryItems", (string)null);
                 });
 
-            modelBuilder.Entity("Passingwind.Abp.DynamicPermissionManagement.Permissions.DynamicPermissionDefinition", b =>
+            modelBuilder.Entity("Passingwind.Abp.PermissionManagement.Permissions.DynamicPermissionDefinition", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -240,7 +240,7 @@ namespace Zero.Migrations
                     b.ToTable("AbpDynamicPermissions", (string)null);
                 });
 
-            modelBuilder.Entity("Passingwind.Abp.DynamicPermissionManagement.Permissions.DynamicPermissionGroupDefinition", b =>
+            modelBuilder.Entity("Passingwind.Abp.PermissionManagement.Permissions.DynamicPermissionGroupDefinition", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

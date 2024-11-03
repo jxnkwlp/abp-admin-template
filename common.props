@@ -1,22 +1,19 @@
 ﻿<Project>
-  <PropertyGroup>
-    <LangVersion>latest</LangVersion>
-    <Version>0.1.0</Version>
+  <Import Project="version.props"/>
+  
+  <PropertyGroup> 
     <NoWarn>$(NoWarn);CS1591</NoWarn>
-    <AbpProjectType>app</AbpProjectType>
-    <CoreVersion>7.0.11</CoreVersion>
-    <MicrosoftCoreVersion>7.0.11</MicrosoftCoreVersion>
-    <AbpVersion>7.3.3</AbpVersion>
+    <AbpProjectType>app</AbpProjectType> 
   </PropertyGroup>
 
   <PropertyGroup>
-    <SharpAbpVersion>2.9.0</SharpAbpVersion>
-    <AccountVersion>0.2.6</AccountVersion>
-    <IdentityVersion>0.2.6</IdentityVersion>
-    <DictionaryVersion>0.2.0</DictionaryVersion>
-    <PermissionVersion>0.2.0</PermissionVersion>
-    <FileManagementVersion>0.2.1</FileManagementVersion>
-    <IdentityClientManagementVersion>0.3.0</IdentityClientManagementVersion>
+    <SharpAbpVersion>3.4.5</SharpAbpVersion>
+    <AccountVersion>1.5.0</AccountVersion>
+    <IdentityVersion>1.3.0</IdentityVersion>
+    <DictionaryVersion>1.3.0</DictionaryVersion>
+    <PermissionVersion>1.3.0</PermissionVersion>
+    <FileManagementVersion>1.3.0</FileManagementVersion>
+    <IdentityClientVersion>1.3.0</IdentityClientVersion>
   </PropertyGroup>
 
   <ItemGroup>

@@ -28,11 +28,12 @@ using Owl.Abp.CultureMap;
 using Passingwind.Abp.FileManagement.Files;
 using Passingwind.Abp.FileManagement.Options;
 using Passingwind.Abp.Identity.AspNetCore;
-using Passingwind.Abp.IdentityClientManagement;
+using Passingwind.Abp.IdentityClient;
 using StackExchange.Redis;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Volo.Abp;
 using Volo.Abp.Account;
+using Volo.Abp.AspNetCore.Mvc.Libs;
 using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.Autofac;
@@ -78,7 +79,7 @@ namespace Zero.Web;
     typeof(AbpMailKitModule),
     typeof(AbpSwashbuckleModule)
     )]
-[DependsOn(typeof(IdentityClientManagementAspNetCoreModule))]
+[DependsOn(typeof(IdentityClientAspNetCoreModule))]
 public class ZeroWebModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
@@ -130,6 +131,8 @@ public class ZeroWebModule : AbpModule
         ConfigureVirtualFileSystem(hostingEnvironment);
         ConfigureAutoApiControllers();
         ConfigureSwaggerServices(context.Services);
+
+        Configure<AbpMvcLibsOptions>(options => options.CheckLibs = false);
     }
 
     public override void PostConfigureServices(ServiceConfigurationContext context)

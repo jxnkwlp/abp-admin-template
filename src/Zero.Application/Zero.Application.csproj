@@ -3,7 +3,7 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>$(TFVersion)</TargetFramework>
     <Nullable>enable</Nullable>
     <RootNamespace>Zero</RootNamespace>
   </PropertyGroup>
@@ -28,9 +28,9 @@
     <PackageReference Include="Passingwind.Abp.Account.Application" Version="$(AccountVersion)" />
     <PackageReference Include="Passingwind.Abp.Identity.Application" Version="$(IdentityVersion)" />
     <PackageReference Include="Passingwind.Abp.DictionaryManagement.Application" Version="$(DictionaryVersion)" />
-    <PackageReference Include="Passingwind.Abp.DynamicPermissionManagement.Application" Version="$(PermissionVersion)" />
+    <PackageReference Include="Passingwind.Abp.PermissionManagement.Application" Version="$(PermissionVersion)" />
     <PackageReference Include="Passingwind.Abp.FileManagement.Application" Version="$(FileManagementVersion)" />
-    <PackageReference Include="Passingwind.Abp.IdentityClientManagement.Application" Version="$(IdentityClientManagementVersion)" />
+    <PackageReference Include="Passingwind.Abp.IdentityClient.Application" Version="$(IdentityClientVersion)" />
   </ItemGroup>
 
 </Project>

@@ -267,3 +267,7 @@ src/Zero.Blazor.Server.Tiered/Logs/*
 #
 **/appsettings.*.json
 src/Zero.Web/storage/*
+
+output/
+
+src/Zero.Web/wwwroot/portal/

@@ -1,9 +1,9 @@
 ﻿using Passingwind.Abp.Account;
 using Passingwind.Abp.DictionaryManagement;
-using Passingwind.Abp.DynamicPermissionManagement;
+using Passingwind.Abp.PermissionManagement;
 using Passingwind.Abp.FileManagement;
 using Passingwind.Abp.Identity;
-using Passingwind.Abp.IdentityClientManagement;
+using Passingwind.Abp.IdentityClient;
 using SharpAbp.Abp.AuditLogging;
 using SharpAbp.Abp.OpenIddict;
 using Volo.Abp.Account;
@@ -30,8 +30,8 @@ namespace Zero;
 [DependsOn(typeof(AuditLoggingApplicationModule))]
 [DependsOn(typeof(OpenIddictApplicationModule))]
 [DependsOn(typeof(FileManagementApplicationModule))]
-[DependsOn(typeof(IdentityClientManagementApplicationModule))]
-[DependsOn(typeof(DynamicPermissionManagementApplicationModule))]
+[DependsOn(typeof(IdentityClientApplicationModule))]
+[DependsOn(typeof(PermissionManagementApplicationModule))]
 [DependsOn(typeof(DictionaryManagementApplicationModule))]
 public class ZeroApplicationModule : AbpModule
 {

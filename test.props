@@ -1,0 +1,9 @@
+﻿<Project>
+  <Import Project="version.props"/>
+
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+</Project>

@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Passingwind.Abp.DictionaryManagement.EntityFrameworkCore;
-using Passingwind.Abp.DynamicPermissionManagement.EntityFrameworkCore;
 using Passingwind.Abp.FileManagement.EntityFrameworkCore;
 using Passingwind.Abp.Identity.EntityFrameworkCore;
-using Passingwind.Abp.IdentityClientManagement.EntityFrameworkCore;
+using Passingwind.Abp.IdentityClient.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -53,6 +52,7 @@ public class ZeroDbContext :
     public DbSet<IdentitySecurityLog> SecurityLogs { get; set; }
     public DbSet<IdentityLinkUser> LinkUsers { get; set; }
     public DbSet<IdentityUserDelegation> UserDelegations { get; set; }
+    public DbSet<IdentitySession> Sessions { get; set; }
 
     /// <summary>
     /// Tenant Management
@@ -84,9 +84,9 @@ public class ZeroDbContext :
         modelBuilder.ConfigureTenantManagement();
 
         modelBuilder.ConfigureDictionaryManagement();
-        modelBuilder.ConfigureDynamicPermissionManagement();
+        modelBuilder.ConfigurePermissionManagement();
         modelBuilder.ConfigureFileManagement();
-        modelBuilder.ConfigureIdentityClientManagement();
+        modelBuilder.ConfigureIdentityClient();
 
         /* Configure your own tables/entities inside here */
 
